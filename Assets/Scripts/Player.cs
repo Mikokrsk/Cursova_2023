@@ -77,7 +77,18 @@ public class Player : MonoBehaviour
         {
             GetHit(25);
         }
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            playerAnimator.SetTrigger("Attack1");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            playerAnimator.SetTrigger("Attack2");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            playerAnimator.SetTrigger("Attack3");
+        }
         Profiler.EndSample();
     }
 
