@@ -19,8 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private bool isStunned;
     [SerializeField] private bool isAlive;
-    [SerializeField] private bool isGrounded;
+   // [SerializeField] private bool isGrounded;
     [SerializeField] private Collider2D collider2D;
+    [SerializeField] private Ground_Sensor m_Ground_Sensor;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         constantForce2D = GetComponent<ConstantForce2D>();
         playerAnimator = GetComponent<Animator>();
         collider2D = GetComponent<Collider2D>();
+        m_Ground_Sensor = GetComponentInChildren<Ground_Sensor>();
         isStunned = false;
         isAlive = true;
     }
@@ -38,10 +40,9 @@ public class Player : MonoBehaviour
         if (isStunned || !isAlive)
         {
             return;
-        }
-        if (isGrounded)
+        } 
+        if (m_Ground_Sensor.Grounded())          
         {
-            playerAnimator.SetFloat("AirSpeedY", rbVelosityMagnitydeY);
             playerAnimator.SetBool("Grounded", true);
         }
         else
@@ -71,7 +72,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
-            playerAnimator.SetTrigger("Jump");
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         Profiler.BeginSample("Player Jump");
+        playerAnimator.SetTrigger("Jump");
 
         rb.AddForce(Vector2.up * jumpForse, ForceMode2D.Impulse);
 
@@ -143,12 +144,12 @@ public class Player : MonoBehaviour
         isStunned = false;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
-    }
+    }*/
 }
