@@ -12172,9 +12172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   health: 100
-  speed: 0
+  speed: 15
   jumpForse: 10
-  maxSpeed: 20
   constantForce2D: {fileID: 0}
   rbVelosityMagnityde: 0
   rbVelosityMagnitydeX: 0
@@ -12182,7 +12181,8 @@ MonoBehaviour:
   horizontal: 0
   vertical: 0
   playerAnimator: {fileID: 0}
-  isGrounded: 1
+  isStunned: 0
+  isAlive: 0
   isGroundedBox: 0
   collider2D: {fileID: 0}
 --- !u!61 &1862789645
