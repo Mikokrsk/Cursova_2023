@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Attack_Sensor : MonoBehaviour
 {
-    public EdgeCollider2D edgeCollider2D;
-    public int damage = 15;
+    [SerializeField] private EdgeCollider2D _edgeCollider2D;
+    [SerializeField] private int _damage = 15;
 /*    private void OnEnable()
     {
         
@@ -13,7 +13,7 @@ public class Attack_Sensor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        edgeCollider2D = GetComponent<EdgeCollider2D>();        
+        _edgeCollider2D = GetComponent<EdgeCollider2D>();        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +21,7 @@ public class Attack_Sensor : MonoBehaviour
         var enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.GetHit(damage);
+            enemy.GetHit(_damage);
         }
     }
 }

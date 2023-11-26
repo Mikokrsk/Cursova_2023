@@ -6,12 +6,12 @@ public class Bandit : Enemy
 {
     private void OnEnable()
     {
-        health = 100;
+        _health = 100;
     }
 
     public override void GetHit(int damage)
     {
-        health -= damage;
-        Debug.Log($"Bandit Get Hit :{health}  Damage :{damage}");
+        _health -= damage;
+        Debug.Log($"Bandit Get Hit :{_health}  Damage :{damage}");
     }
 }

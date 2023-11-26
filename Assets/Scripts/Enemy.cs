@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int health;
-    [SerializeField] private float speed;
+    [SerializeField] protected int _health;
+    [SerializeField] private float _speed;
 
     public virtual void GetHit(int damage)
     {
-        health -= damage;
+        _health -= damage;
     }
 
 }

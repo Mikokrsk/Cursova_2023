@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Ground_Sensor : MonoBehaviour
 {
-    [SerializeField] private bool m_Grounded;
+    [SerializeField] private bool _grounded;
 
     public bool Grounded()
     {
-        return m_Grounded;
+        return _grounded;
     } 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_Grounded = true;
+        _grounded = true;
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        m_Grounded = false;
+        _grounded = false;
     }
    
 }
