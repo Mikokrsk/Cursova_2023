@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private int damage;
-    [SerializeField] private int rejectionForce;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private int _damage;
+    [SerializeField] private int _rejectionForce;
+    [SerializeField] private ParticleSystem _particleSystem;
     // Start is called before the first frame update
     void Start()
     {
-        particleSystem = GetComponentInChildren<ParticleSystem>();
-        particleSystem.Stop();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _particleSystem.Stop();
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Obstacle : MonoBehaviour
         if (collision.tag == "Player")
         {
             var player = collision.GetComponent<Player>();
-            player.GetHit(damage);
+            player.GetHit(_damage);
             StartCoroutine(DestroyObstacle());
            
         }
@@ -32,7 +32,7 @@ public class Obstacle : MonoBehaviour
 
     IEnumerator DestroyObstacle()
     {
-        particleSystem.Play();
+        _particleSystem.Play();
         var collider = GetComponent<Collider2D>();
         collider.enabled = false;
         var image = GetComponent<SpriteRenderer>();
