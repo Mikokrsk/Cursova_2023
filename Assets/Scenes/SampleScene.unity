@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00304fe65bfd08498e096c98c31913f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeCollider2D: {fileID: 0}
-  damage: 15
+  _edgeCollider2D: {fileID: 0}
+  _damage: 15
 --- !u!68 &16604809
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyBandit
       objectReference: {fileID: 0}
+    - target: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.015049785
@@ -387,6 +391,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 589070511}
+    - targetCorrespondingSourceObject: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 589070517}
   m_SourcePrefab: {fileID: 100100000, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
 --- !u!1 &76370882 stripped
 GameObject:
@@ -5884,9 +5891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b84c64df8b2f54a8ae36eb90fef30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  rejectionForce: 0
-  particleSystem: {fileID: 0}
+  _damage: 0
+  _rejectionForce: 0
+  _particleSystem: {fileID: 0}
 --- !u!61 &262358941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6935,8 +6942,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82400e3ce45a42347b68749caa7d489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  speed: 5
+  _health: 100
+  _speed: 5
+--- !u!247 &589070517
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589070504}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &644186459
 GameObject:
   m_ObjectHideFlags: 0
@@ -6982,7 +7000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1867a26f314c7fc4c9b7660aa3a8f911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Grounded: 0
+  _grounded: 0
 --- !u!61 &644186462
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10565,8 +10583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00304fe65bfd08498e096c98c31913f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeCollider2D: {fileID: 0}
-  damage: 20
+  _edgeCollider2D: {fileID: 0}
+  _damage: 15
 --- !u!68 &815412681
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -11868,8 +11886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00304fe65bfd08498e096c98c31913f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeCollider2D: {fileID: 0}
-  damage: 10
+  _edgeCollider2D: {fileID: 0}
+  _damage: 15
 --- !u!68 &1467587723
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -12764,21 +12782,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c550ef1ae16fdd141b08d87575ba3b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  health: 100
-  speed: 15
-  jumpForse: 10
-  constantForce2D: {fileID: 0}
-  rbVelosityMagnityde: 0
-  rbVelosityMagnitydeX: 0
-  rbVelosityMagnitydeY: 0
-  horizontal: 0
-  vertical: 0
-  playerAnimator: {fileID: 0}
-  isStunned: 0
-  isAlive: 0
-  collider2D: {fileID: 0}
-  m_Ground_Sensor: {fileID: 0}
+  _rb: {fileID: 0}
+  _health: 100
+  _speed: 20
+  _jumpForse: 15
+  _constantForce2D: {fileID: 0}
+  _rbVelosityMagnityde: 0
+  _rbVelosityMagnitydeX: 0
+  _rbVelosityMagnitydeY: 0
+  _horizontal: 0
+  _vertical: 0
+  _playerAnimator: {fileID: 0}
+  _isStunned: 0
+  _isAlive: 0
+  _collider2D: {fileID: 0}
+  _ground_Sensor: {fileID: 0}
 --- !u!61 &1862789645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12912,7 +12930,7 @@ Transform:
   m_GameObject: {fileID: 1862789643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: -2.53, z: 0}
+  m_LocalPosition: {x: -1.28, y: -3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13068,7 +13086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0188fea5e6095194e8b074d5982dc1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  _player: {fileID: 0}
   cam: {fileID: 0}
 --- !u!70 &1862789652
 CapsuleCollider2D:
