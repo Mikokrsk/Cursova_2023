@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -15,18 +16,31 @@ public class PlayerMoveController : MonoBehaviour
 
     private void Start()
     {
+
         if (_player != null)
         {
-            _player.startMove += StartMove;
-            _player.endMove += EndMove;
-            _player.jump += Jump;
+            _player._playerStats.startMove += StartMove;
+            _player._playerStats.endMove += EndMove;
+            _player._playerStats.jump += Jump;
         }
     }
 
     void Update()
     {
         Profiler.BeginSample("PlayerMoveController Update");
-
+        _player._playerStats.horizontal = Input.GetAxis("Horizontal");
+        if (_player._playerStats.horizontal != 0)
+        {
+            _player._playerStats.startMove?.Invoke();
+        }
+        else
+        {
+            _player._playerStats.endMove?.Invoke();
+        }
+        if (Input.GetKeyDown(_player._playerStats.jumpKeyCode) && _player._playerStats.grounded)
+        {
+           _player._playerStats.jump?.Invoke();
+        }
         Profiler.EndSample();
     }
 

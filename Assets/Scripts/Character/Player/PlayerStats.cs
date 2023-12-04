@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,5 +50,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public PlayerAnimationController _animController;
     [SerializeField] public PlayerGroundSensor _groundSensor;
     [SerializeField] public PlayerMoveController _moveController;
-
+    public Action jump;
+    public Action startMove;
+    public Action endMove;
+    public Action attack1;
+    public Action attack2;
+    public Action attack3;
 }

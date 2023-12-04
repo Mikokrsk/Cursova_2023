@@ -8,9 +8,9 @@ using UnityEngine.Rendering;
 public class Player : MonoBehaviour
 {
     [SerializeField] public PlayerStats _playerStats;
-    public event Action startMove;
-    public event Action endMove;
-    public event Action jump;
+   // public event Action startMove;
+    //public event Action endMove;
+    //public event Action jump;
     public event Action attack1;
     public event Action attack2;
     public event Action attack3;
@@ -37,21 +37,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(_playerStats.attack3KeyCode))
         {
             attack3.Invoke();
-        }
-        //Move
-        _playerStats.horizontal = Input.GetAxis("Horizontal");
-        if (_playerStats.horizontal != 0)
-        {
-            startMove?.Invoke();
-        }
-        else
-        {
-            endMove?.Invoke();
-        }
-        //Jump
-        if (Input.GetKeyDown(_playerStats.jumpKeyCode) && _playerStats.grounded)
-        {
-            jump?.Invoke();
         }
 
         _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;

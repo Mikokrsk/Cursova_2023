@@ -19,12 +19,12 @@ public class PlayerAnimationController : MonoBehaviour
        // _player._playerStats = _player._playerStats;
         if (_player != null)
         {
-            _player.startMove += StartMove;
-            _player.endMove += EndMove;
-            _player.jump += Jump;
-            _player.attack1 += Attack1;
-            _player.attack2 += Attack2;
-            _player.attack3 += Attack3;
+            _player._playerStats.startMove += StartMove;
+            _player._playerStats.endMove += EndMove;
+            _player._playerStats.jump += Jump;
+            _player._playerStats.attack1 += Attack1;
+            _player._playerStats.attack2 += Attack2;
+            _player._playerStats.attack3 += Attack3;
         }
     }
 
