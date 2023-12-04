@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerStats : MonoBehaviour
+{
+    [Header("Alive")]
+    [SerializeField] public float health = 100;
+    [Header("Move")]
+    [SerializeField] public float speed = 18f;
+    [SerializeField] public ConstantForce2D constantForce2D;
+    [Header("Jump")]
+    [SerializeField] public float jumpForse = 10f;
+    [Header("Animations values")]
+    [SerializeField] public Animator animator;
+    [SerializeField] public float rbVelosityMagnityde;
+    [SerializeField] public float rbVelosityMagnitydeX;
+    [SerializeField] public float rbVelosityMagnitydeY;
+    [SerializeField] public float horizontal;
+    [SerializeField] public float vertical;
+    [Header("Colliders")]
+    [SerializeField] public Collider2D collider2D;
+    [SerializeField] public PlayerGroundSensor ground_Sensor;
+    [Header("Rigidbody")]
+    [SerializeField] public Rigidbody2D rb;
+    [Header("Animations name")]
+    [SerializeField] public string animJumpName = "Jump";
+    [SerializeField] public string animMoveName = "Move";
+    [SerializeField] public string animDeathName = "Death";
+    [SerializeField] public string animHitName = "Hit";
+    [SerializeField] public string animAttack1Name = "Attack1";
+    [SerializeField] public string animAttack2Name = "Attack2";
+    [SerializeField] public string animAttack3Name = "Attack3";
+    [SerializeField] public string animAirSpeedYName = "AirSpeedY";
+    [SerializeField] public string animGroundedName = "Grounded";
+    [Header("Stats")]
+    [SerializeField] public bool isStunned = false;
+    [SerializeField] public bool grounded = true;
+    [SerializeField] public bool isAlive = true;
+    [SerializeField] public bool isMove = false;
+    [SerializeField] public bool isAttack = false;
+    [Header("Controll Key")]
+    [SerializeField] public KeyCode attack1KeyCode = KeyCode.Alpha1;
+    [SerializeField] public KeyCode attack2KeyCode = KeyCode.Alpha2;
+    [SerializeField] public KeyCode attack3KeyCode = KeyCode.Alpha3;
+    [SerializeField] public KeyCode jumpKeyCode = KeyCode.Space;
+    [Header("Components")]
+    [SerializeField] private PlayerAnimationController _animController;
+    [SerializeField] private PlayerGroundSensor _groundSensor;
+    [SerializeField] private PlayerMoveController _moveController;
+
+}

@@ -24,7 +24,7 @@ public class Obstacle : MonoBehaviour
         if (collision.tag == "Player")
         {
             var player = collision.GetComponent<Player>();
-            player.GetHit(_damage);
+            //player.GetHit(_damage);
             StartCoroutine(DestroyObstacle());
            
         }

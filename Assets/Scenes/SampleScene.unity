@@ -6942,8 +6942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82400e3ce45a42347b68749caa7d489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  _speed: 5
 --- !u!247 &589070517
 ConstantForce2D:
   m_ObjectHideFlags: 0
@@ -6972,7 +6970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &644186460
 Transform:
   m_ObjectHideFlags: 0
@@ -12763,6 +12761,10 @@ GameObject:
   - component: {fileID: 1862789651}
   - component: {fileID: 1862789645}
   - component: {fileID: 1862789653}
+  - component: {fileID: 1862789655}
+  - component: {fileID: 1862789654}
+  - component: {fileID: 1862789656}
+  - component: {fileID: 1862789657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -12782,21 +12784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c550ef1ae16fdd141b08d87575ba3b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
-  _health: 100
-  _speed: 20
-  _jumpForse: 15
-  _constantForce2D: {fileID: 0}
-  _rbVelosityMagnityde: 0
-  _rbVelosityMagnitydeX: 0
-  _rbVelosityMagnitydeY: 0
-  _horizontal: 0
-  _vertical: 0
-  _playerAnimator: {fileID: 0}
-  _isStunned: 0
-  _isAlive: 0
-  _collider2D: {fileID: 0}
-  _ground_Sensor: {fileID: 0}
 --- !u!61 &1862789645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13134,6 +13121,88 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &1862789654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862789643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94de08a47e4f8d04e93e91ad1c4f0da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStats: {fileID: 0}
+--- !u!114 &1862789655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862789643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e06db7c8e7a2294f8d215a5cecba393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  speed: 18
+  constantForce2D: {fileID: 0}
+  jumpForse: 10
+  animator: {fileID: 0}
+  rbVelosityMagnityde: 0
+  rbVelosityMagnitydeX: 0
+  rbVelosityMagnitydeY: 0
+  horizontal: 0
+  vertical: 0
+  collider2D: {fileID: 0}
+  ground_Sensor: {fileID: 0}
+  rb: {fileID: 0}
+  animJumpName: Jump
+  animMoveName: Move
+  animDeathName: Death
+  animHitName: Hit
+  animAttack1Name: Attack1
+  animAttack2Name: Attack2
+  animAttack3Name: Attack3
+  animAirSpeedYName: AirSpeedY
+  animGroundedName: Grounded
+  animController: {fileID: 0}
+  groundSensor: {fileID: 0}
+  moveController: {fileID: 0}
+  isStunned: 0
+  grounded: 1
+  isAlive: 1
+  isMove: 0
+--- !u!114 &1862789656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862789643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f386ab8dafad449b4594710e2dcde4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStats: {fileID: 0}
+--- !u!114 &1862789657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862789643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252e568e31d18d54bba1a07d3be885c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 1862789652}
+  _sizeBox: {x: 0.2, y: 0.1}
+  _range: -0.7
 --- !u!1001 &1864109477
 PrefabInstance:
   m_ObjectHideFlags: 0

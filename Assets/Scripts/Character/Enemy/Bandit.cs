@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bandit : Enemy
+public class Bandit : Character
 {
+/*    [SerializeField] private CharacterStats _stats;
+    private void Start()
+    {
+        _stats = PlayerStats.Instance;
+    }
     private void OnEnable()
     {
         _health = 100;
@@ -13,5 +18,5 @@ public class Bandit : Enemy
     {
         _health -= damage;
         Debug.Log($"Bandit Get Hit :{_health}  Damage :{damage}");
-    }
+    }*/
 }

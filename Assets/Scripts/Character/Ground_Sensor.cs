@@ -10,7 +10,6 @@ public class Ground_Sensor : MonoBehaviour
     {
         return _grounded;
     } 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _grounded = true;
