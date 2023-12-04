@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bandit : Character
+public class Bandit : Enemy
 {
-/*    [SerializeField] private CharacterStats _stats;
     private void Start()
     {
-        _stats = PlayerStats.Instance;
-    }
-    private void OnEnable()
-    {
-        _health = 100;
+        _enemyStats = GetComponent<EnemyStats>();
     }
 
     public override void GetHit(int damage)
     {
-        _health -= damage;
-        Debug.Log($"Bandit Get Hit :{_health}  Damage :{damage}");
-    }*/
+       _enemyStats.Health -= damage;
+        Debug.Log($"Bandit Get Hit :{_enemyStats.Health}  Damage :{damage}");
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -57,5 +58,8 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _player._playerStats.animator.SetTrigger(_player._playerStats.animAttack3Name);
     }
-
+    public void Hit()
+    {
+        _player._playerStats.animator.SetTrigger(_player._playerStats.animHitName);
+    }
 }

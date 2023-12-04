@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
         {
             jump?.Invoke();
         }
+
         _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
         _playerStats.rbVelosityMagnitydeX = _playerStats.rb.velocity.x;
         _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;

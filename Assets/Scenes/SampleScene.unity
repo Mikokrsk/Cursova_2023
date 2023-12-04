@@ -394,6 +394,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 589070517}
+    - targetCorrespondingSourceObject: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 589070523}
   m_SourcePrefab: {fileID: 100100000, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
 --- !u!1 &76370882 stripped
 GameObject:
@@ -6942,6 +6945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82400e3ce45a42347b68749caa7d489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyStats: {fileID: 0}
 --- !u!247 &589070517
 ConstantForce2D:
   m_ObjectHideFlags: 0
@@ -6953,6 +6957,19 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &589070523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589070504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10622735526db554489bd16f5af3e4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &644186459
 GameObject:
   m_ObjectHideFlags: 0
@@ -10582,7 +10599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _edgeCollider2D: {fileID: 0}
-  _damage: 15
+  _damage: 20
 --- !u!68 &815412681
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -11885,7 +11902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _edgeCollider2D: {fileID: 0}
-  _damage: 15
+  _damage: 10
 --- !u!68 &1467587723
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -12784,6 +12801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c550ef1ae16fdd141b08d87575ba3b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerStats: {fileID: 0}
 --- !u!61 &1862789645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13133,7 +13151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94de08a47e4f8d04e93e91ad1c4f0da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &1862789655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13166,15 +13184,21 @@ MonoBehaviour:
   animAttack1Name: Attack1
   animAttack2Name: Attack2
   animAttack3Name: Attack3
+  animIdleName: HeroKnight_Idle
   animAirSpeedYName: AirSpeedY
   animGroundedName: Grounded
-  animController: {fileID: 0}
-  groundSensor: {fileID: 0}
-  moveController: {fileID: 0}
   isStunned: 0
   grounded: 1
   isAlive: 1
   isMove: 0
+  isAttack: 0
+  attack1KeyCode: 49
+  attack2KeyCode: 50
+  attack3KeyCode: 51
+  jumpKeyCode: 32
+  _animController: {fileID: 0}
+  _groundSensor: {fileID: 0}
+  _moveController: {fileID: 0}
 --- !u!114 &1862789656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13187,7 +13211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f386ab8dafad449b4594710e2dcde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &1862789657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13200,6 +13224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252e568e31d18d54bba1a07d3be885c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _boxCollider: {fileID: 1862789652}
   _sizeBox: {x: 0.2, y: 0.1}
   _range: -0.7
