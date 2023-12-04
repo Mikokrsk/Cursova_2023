@@ -6,10 +6,7 @@ public class Attack_Sensor : MonoBehaviour
 {
     [SerializeField] private EdgeCollider2D _edgeCollider2D;
     [SerializeField] private int _damage = 15;
-/*    private void OnEnable()
-    {
-        
-    }*/
+
     // Start is called before the first frame update
     void Start()
     {

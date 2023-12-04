@@ -24,13 +24,14 @@ public class PlayerStats : MonoBehaviour
     [Header("Rigidbody")]
     [SerializeField] public Rigidbody2D rb;
     [Header("Animations name")]
-    [SerializeField] public string animJumpName = "Jump";
-    [SerializeField] public string animMoveName = "Move";
-    [SerializeField] public string animDeathName = "Death";
-    [SerializeField] public string animHitName = "Hit";
-    [SerializeField] public string animAttack1Name = "Attack1";
-    [SerializeField] public string animAttack2Name = "Attack2";
-    [SerializeField] public string animAttack3Name = "Attack3";
+    [SerializeField] public string animJumpName = "HeroKnight_Jump";
+    [SerializeField] public string animMoveName = "HeroKnight_Run";
+    [SerializeField] public string animDeathName = "HeroKnight_Death";
+    [SerializeField] public string animHitName = "HeroKnight_Hurt";
+    [SerializeField] public string animAttack1Name = "HeroKnight_Attack1";
+    [SerializeField] public string animAttack2Name = "HeroKnight_Attack2";
+    [SerializeField] public string animAttack3Name = "HeroKnight_Attack3";
+    [SerializeField] public string animIdleName = "HeroKnight_Idle";
     [SerializeField] public string animAirSpeedYName = "AirSpeedY";
     [SerializeField] public string animGroundedName = "Grounded";
     [Header("Stats")]
@@ -45,8 +46,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public KeyCode attack3KeyCode = KeyCode.Alpha3;
     [SerializeField] public KeyCode jumpKeyCode = KeyCode.Space;
     [Header("Components")]
-    [SerializeField] private PlayerAnimationController _animController;
-    [SerializeField] private PlayerGroundSensor _groundSensor;
-    [SerializeField] private PlayerMoveController _moveController;
+    [SerializeField] public PlayerAnimationController _animController;
+    [SerializeField] public PlayerGroundSensor _groundSensor;
+    [SerializeField] public PlayerMoveController _moveController;
 
 }

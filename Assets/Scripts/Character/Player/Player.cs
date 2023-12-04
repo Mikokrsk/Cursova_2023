@@ -22,48 +22,36 @@ public class Player : MonoBehaviour
         _playerStats.collider2D = GetComponent<Collider2D>();
         _playerStats.ground_Sensor = GetComponent<PlayerGroundSensor>();
         _playerStats.rb = GetComponent<Rigidbody2D>();
-        //_groundSensor = GetComponent<PlayerGroundSensor>();
-        /*       _playerStats = GetComponent<PlayerStats>(); 
-                _animController = GetComponent<PlayerAnimationController>();
-               
-                _moveController = GetComponent<PlayerMoveController>();*/
     }
     private void Update()
     {
-        if (_playerStats.isAttack == true)
+        //Attack
+        if (Input.GetKeyDown(_playerStats.attack1KeyCode))
         {
-            return;
+            attack1.Invoke();
+        }
+        if (Input.GetKeyDown(_playerStats.attack2KeyCode))
+        {
+            attack2.Invoke();
+        }
+        if (Input.GetKeyDown(_playerStats.attack3KeyCode))
+        {
+            attack3.Invoke();
+        }
+        //Move
+        _playerStats.horizontal = Input.GetAxis("Horizontal");
+        if (_playerStats.horizontal != 0)
+        {
+            startMove?.Invoke();
         }
         else
         {
-            //Attack
-            if (Input.GetKeyDown(_playerStats.attack1KeyCode))
-            {
-                attack1.Invoke();
-            }
-            if (Input.GetKeyDown(_playerStats.attack2KeyCode))
-            {
-                attack2.Invoke();
-            }
-            if (Input.GetKeyDown(_playerStats.attack3KeyCode))
-            {
-                attack3.Invoke();
-            }
-            //Move
-            _playerStats.horizontal = Input.GetAxis("Horizontal");
-            if (_playerStats.horizontal != 0)
-            {
-                startMove?.Invoke();
-            }
-            else
-            {
-                endMove?.Invoke();
-            }
-            //Jump
-            if (Input.GetKeyDown(_playerStats.jumpKeyCode) && _playerStats.grounded)
-            {
-                jump?.Invoke();
-            }
+            endMove?.Invoke();
+        }
+        //Jump
+        if (Input.GetKeyDown(_playerStats.jumpKeyCode) && _playerStats.grounded)
+        {
+            jump?.Invoke();
         }
         _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
         _playerStats.rbVelosityMagnitydeX = _playerStats.rb.velocity.x;

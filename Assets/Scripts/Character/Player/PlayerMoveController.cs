@@ -56,8 +56,4 @@ public class PlayerMoveController : MonoBehaviour
     {
         _player._playerStats.constantForce2D.force = Vector2.zero;
     }
-    private void OnDisable()
-    {
-        
-    }
 }
