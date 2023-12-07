@@ -12,6 +12,13 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public ConstantForce2D constantForce2D;
     [Header("Jump")]
     [SerializeField] public float jumpForse = 10f;
+    [Header("Attack")]
+    [SerializeField] public float attack1Delay;
+    [SerializeField] public int damageAttack1;
+    [SerializeField] public float attack2Delay;
+    [SerializeField] public int damageAttack2;
+    [SerializeField] public float attack3Delay;
+    [SerializeField] public int damageAttack3;
     [Header("Animations values")]
     [SerializeField] public Animator animator;
     [SerializeField] public float rbVelosityMagnityde;
@@ -50,6 +57,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public PlayerAnimationController _animController;
     [SerializeField] public PlayerGroundSensor _groundSensor;
     [SerializeField] public PlayerMoveController _moveController;
+    [Header("Events")]
     public Action jump;
     public Action startMove;
     public Action endMove;

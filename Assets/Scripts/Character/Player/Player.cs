@@ -11,10 +11,10 @@ public class Player : MonoBehaviour
    // public event Action startMove;
     //public event Action endMove;
     //public event Action jump;
-    public event Action attack1;
+   /* public event Action attack1;
     public event Action attack2;
-    public event Action attack3;
-    private void Start()
+    public event Action attack3;*/
+    private void OnEnable()
     {
         _playerStats = GetComponent<PlayerStats>();
         _playerStats.constantForce2D = GetComponent<ConstantForce2D>();
@@ -25,20 +25,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        //Attack
-        if (Input.GetKeyDown(_playerStats.attack1KeyCode))
-        {
-            attack1.Invoke();
-        }
-        if (Input.GetKeyDown(_playerStats.attack2KeyCode))
-        {
-            attack2.Invoke();
-        }
-        if (Input.GetKeyDown(_playerStats.attack3KeyCode))
-        {
-            attack3.Invoke();
-        }
-
         _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
         _playerStats.rbVelosityMagnitydeX = _playerStats.rb.velocity.x;
         _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;

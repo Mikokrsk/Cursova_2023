@@ -16,7 +16,6 @@ public class PlayerMoveController : MonoBehaviour
 
     private void Start()
     {
-
         if (_player != null)
         {
             _player._playerStats.startMove += StartMove;

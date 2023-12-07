@@ -4,13 +4,39 @@ using UnityEngine;
 
 public class Attack_Sensor : MonoBehaviour
 {
-    [SerializeField] private EdgeCollider2D _edgeCollider2D;
-    [SerializeField] private int _damage = 15;
+    [SerializeField] private EdgeCollider2D _attack1Colider;
+    [SerializeField] private EdgeCollider2D _attack2Colider;
+    [SerializeField] private EdgeCollider2D _attack3Colider;
+    [SerializeField] private int _damage = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OffColiders()
     {
-        _edgeCollider2D = GetComponent<EdgeCollider2D>();        
+        _attack1Colider.enabled = false;
+        _attack2Colider.enabled = false;
+        _attack3Colider.enabled = false;
+    }
+
+    public void EnableAttack1Collider()
+    {
+        _attack1Colider.enabled = true;
+        _attack2Colider.enabled = false;
+        _attack3Colider.enabled = false;
+    }
+    public void EnableAttack2Collider()
+    {
+        _attack1Colider.enabled = false;
+        _attack2Colider.enabled = true;
+        _attack3Colider.enabled = false;
+    }
+    public void EnableAttack3Collider()
+    {
+        _attack1Colider.enabled = false;
+        _attack2Colider.enabled = false;
+        _attack3Colider.enabled = true;
+    }
+    public void SetDamage(int damage)
+    {
+        _damage = damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,5 +46,6 @@ public class Attack_Sensor : MonoBehaviour
         {
             enemy.GetHit(_damage);
         }
+        OffColiders();
     }
 }
