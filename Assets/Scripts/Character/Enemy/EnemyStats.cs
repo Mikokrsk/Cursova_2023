@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,15 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private int _health = 100;
+    [Header("Move")]
+    [SerializeField] public float speed = 18f;
+    [SerializeField] public ConstantForce2D constantForce2D;
+    [SerializeField] public bool isMove;
+    [SerializeField] public int direction;
+    [Header("Events")]
+    public Action jump;
+    public Action startMove;
+    public Action endMove;
 
     public int Health
     {
