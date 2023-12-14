@@ -6,10 +6,19 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyMoveController : Enemy
 {
-
+    //[SerializeField] private int _leftBorderX;
+    //[SerializeField] private int _rightBorderX;
+    [SerializeField] private Transform _leftBorderX;
+    [SerializeField] private Transform _rightBorderX;
     // Start is called before the first frame update
     void Start()
     {
+        if (_leftBorderX.position.x > _rightBorderX.position.x)
+        {
+            var rightBorderX = _leftBorderX;
+            _leftBorderX = _rightBorderX;
+            _rightBorderX = rightBorderX;
+        }
         _enemyStats = GetComponent<EnemyStats>();
         if (_enemyStats == null)
         {
@@ -29,14 +38,26 @@ public class EnemyMoveController : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (_enemyStats.isMove)
+        if (_enemyStats.isPatrolling)
         {
-            _enemyStats.startMove?.Invoke();
+            Patrolling();
+            return;
         }
-        else
+    }
+
+    private void Patrolling()
+    {
+
+        if (transform.position.x < _leftBorderX.position.x)
         {
-            _enemyStats.endMove?.Invoke();
+            _enemyStats.direction = 1;
         }
+        if (transform.position.x > _rightBorderX.position.x)
+        {
+            _enemyStats.direction = -1;
+        }
+        _enemyStats.startMove?.Invoke();
+
     }
 
     public void StartMove()

@@ -9,8 +9,11 @@ public class EnemyStats : MonoBehaviour
     [Header("Move")]
     [SerializeField] public float speed = 18f;
     [SerializeField] public ConstantForce2D constantForce2D;
-    [SerializeField] public bool isMove;
     [SerializeField] public int direction;
+    [Header("Stans")]
+    [SerializeField] public bool isMove;
+    [SerializeField] public bool isPatrolling;
+
     [Header("Events")]
     public Action jump;
     public Action startMove;

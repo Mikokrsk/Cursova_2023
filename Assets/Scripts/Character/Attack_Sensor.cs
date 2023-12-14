@@ -9,7 +9,7 @@ public class Attack_Sensor : MonoBehaviour
     [SerializeField] private EdgeCollider2D _attack3Colider;
     [SerializeField] private int _damage = 0;
 
-    private void OffColiders()
+    public void OffColiders()
     {
         _attack1Colider.enabled = false;
         _attack2Colider.enabled = false;
