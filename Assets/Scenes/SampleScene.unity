@@ -910,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 252113410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.18, y: -14.689, z: 0}
+  m_LocalPosition: {x: 9.16, y: -13.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6852,21 +6852,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13884fc4bd0e0d94981892259f9687d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStats: {fileID: 0}
   _leftBorderX: {fileID: 294130025}
   _rightBorderX: {fileID: 560858602}
---- !u!114 &589070530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463392124451697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b90b390fdb4c5241b1921feeac89469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
   _enemyStats: {fileID: 0}
 --- !u!70 &589070531
 CapsuleCollider2D:
@@ -13337,7 +13325,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4588935256425523}
-  - component: {fileID: 589070530}
   - component: {fileID: 95734438082238377}
   - component: {fileID: 212652212454739095}
   - component: {fileID: 50959880266657663}
@@ -13345,6 +13332,7 @@ GameObject:
   - component: {fileID: 61346583683674117}
   - component: {fileID: 589070523}
   - component: {fileID: 589070529}
+  - component: {fileID: 212652212454739096}
   m_Layer: 0
   m_Name: HeavyBandit
   m_TagString: Enemy
@@ -13585,6 +13573,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &212652212454739096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463392124451697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82400e3ce45a42347b68749caa7d489f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyStats: {fileID: 0}
+  _enemyMoveController: {fileID: 0}
 --- !u!1001 &8367401648572184888
 PrefabInstance:
   m_ObjectHideFlags: 0

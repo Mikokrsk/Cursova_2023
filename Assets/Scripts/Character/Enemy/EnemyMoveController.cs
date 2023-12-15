@@ -4,22 +4,27 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class EnemyMoveController : Enemy
+public class EnemyMoveController : MonoBehaviour
 {
     //[SerializeField] private int _leftBorderX;
     //[SerializeField] private int _rightBorderX;
     [SerializeField] private Transform _leftBorderX;
     [SerializeField] private Transform _rightBorderX;
+    [SerializeField] private Enemy _enemy;
+    [SerializeField] private EnemyStats _enemyStats;
     // Start is called before the first frame update
     void Start()
     {
+        _enemy = GetComponent<Enemy>();
+        _enemy.SetEnemyMoveController(this);
+        _enemyStats = _enemy.GetEnemyStats();
         if (_leftBorderX.position.x > _rightBorderX.position.x)
         {
             var rightBorderX = _leftBorderX;
             _leftBorderX = _rightBorderX;
             _rightBorderX = rightBorderX;
         }
-        _enemyStats = GetComponent<EnemyStats>();
+
         if (_enemyStats == null)
         {
             gameObject.AddComponent<EnemyStats>();
@@ -43,16 +48,18 @@ public class EnemyMoveController : Enemy
             Patrolling();
             return;
         }
+
+        EndMove();
     }
 
     private void Patrolling()
     {
-
-        if (transform.position.x < _leftBorderX.position.x)
+        var range = (_rightBorderX.position.x - _leftBorderX.position.x) / 7;
+        if (transform.position.x - range < _leftBorderX.position.x)
         {
             _enemyStats.direction = 1;
         }
-        if (transform.position.x > _rightBorderX.position.x)
+        if (transform.position.x + range > _rightBorderX.position.x)
         {
             _enemyStats.direction = -1;
         }
