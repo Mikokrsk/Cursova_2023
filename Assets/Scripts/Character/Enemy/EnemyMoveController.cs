@@ -8,23 +8,29 @@ public class EnemyMoveController : MonoBehaviour
 {
     //[SerializeField] private int _leftBorderX;
     //[SerializeField] private int _rightBorderX;
-    [SerializeField] private Transform _leftBorderX;
-    [SerializeField] private Transform _rightBorderX;
+    [SerializeField] private Transform _leftBorder;
+    [SerializeField] private Transform _rightBorder;
+    [SerializeField] private float _leftBorderX;
+    [SerializeField] private float _rightBorderX;
     [SerializeField] private Enemy _enemy;
     [SerializeField] private EnemyStats _enemyStats;
     // Start is called before the first frame update
     void Start()
     {
-        _enemy = GetComponent<Enemy>();
+       // _enemy = GetComponent<Enemy>();
         _enemy.SetEnemyMoveController(this);
         _enemyStats = _enemy.GetEnemyStats();
-        if (_leftBorderX.position.x > _rightBorderX.position.x)
-        {
-            var rightBorderX = _leftBorderX;
-            _leftBorderX = _rightBorderX;
-            _rightBorderX = rightBorderX;
+        if (_leftBorder.position.x > _rightBorder.position.x)
+        {            
+            _rightBorderX = _leftBorder.position.x;
+            _leftBorderX = _rightBorder.position.x;
         }
-
+        else
+        {
+            _leftBorderX = _leftBorder.position.x;
+            _rightBorderX = _rightBorder.position.x;
+        }
+/*
         if (_enemyStats == null)
         {
             gameObject.AddComponent<EnemyStats>();
@@ -35,7 +41,7 @@ public class EnemyMoveController : MonoBehaviour
             gameObject.AddComponent<ConstantForce2D>();
             _enemyStats.constantForce2D = GetComponent<ConstantForce2D>();
         }
-
+*/
         _enemyStats.startMove += StartMove;
         _enemyStats.endMove += EndMove;
     }
@@ -54,12 +60,12 @@ public class EnemyMoveController : MonoBehaviour
 
     private void Patrolling()
     {
-        var range = (_rightBorderX.position.x - _leftBorderX.position.x) / 7;
-        if (transform.position.x - range < _leftBorderX.position.x)
+        var range = (_rightBorderX - _leftBorderX) / 7;
+        if (_enemy.transform.position.x - range < _leftBorderX)
         {
             _enemyStats.direction = 1;
         }
-        if (transform.position.x + range > _rightBorderX.position.x)
+        if (_enemy.transform.position.x + range > _rightBorderX)
         {
             _enemyStats.direction = -1;
         }
@@ -71,7 +77,7 @@ public class EnemyMoveController : MonoBehaviour
     {
         _enemyStats.constantForce2D.enabled = true;
         _enemyStats.direction = _enemyStats.direction > 0 ? 1 : -1;
-        gameObject.transform.localScale = new Vector2(-_enemyStats.direction, 1);
+        _enemy.gameObject.transform.localScale = new Vector2(-_enemyStats.direction, 1);
 
         var vectorForce = new Vector2(_enemyStats.direction * _enemyStats.speed, 0);
         _enemyStats.constantForce2D.force = vectorForce;

@@ -13,11 +13,14 @@ public class EnemyStats : MonoBehaviour
     [Header("Stans")]
     [SerializeField] public bool isMove;
     [SerializeField] public bool isPatrolling;
-
+    [SerializeField] public bool isAttaking;
     [Header("Events")]
     public Action jump;
     public Action startMove;
     public Action endMove;
+    public Action attack;
+    [Header("Combat")]
+    public int damage = 10;
 
     public int Health
     {
