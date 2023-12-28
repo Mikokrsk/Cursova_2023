@@ -20,7 +20,10 @@ public class EnemyStats : MonoBehaviour
     public Action endMove;
     public Action attack;
     [Header("Combat")]
-    public int damage = 10;
+    public int[] damage = { 10 };
+    [Header("Animations")]
+    [SerializeField] public Animator animator;
+    public string animAttackName = "Attack";
 
     public int Health
     {

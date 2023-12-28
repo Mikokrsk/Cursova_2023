@@ -66,6 +66,6 @@ public class CombatController : MonoBehaviour
         _player._playerStats.isAttack = true;
         yield return new WaitForSeconds(attackDelay);
         _player._playerStats.isAttack = false;
-        _attackSensor.OffColiders();
+        _attackSensor.OffAllColiders();
     }
 }
