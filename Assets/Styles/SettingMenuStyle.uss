@@ -7,7 +7,7 @@
     right: auto;
     background-image: url('project://database/Assets/Assets/2D%20Casual%20UI/Sprite/GUI.png?fileID=21300022&guid=1eaee135ce037439d925cee5e41ce026&type=3#GUI_11');
     background-color: rgba(188, 188, 188, 0);
-    font-size: 66px;
+    font-size: 45px;
     -unity-font-style: bold;
     -unity-slice-top: initial;
     -unity-slice-left: initial;
