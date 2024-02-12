@@ -259,7 +259,15 @@ MonoBehaviour:
     m_Id: 6abcf291-fc80-450e-8cbf-a613a308bb8b
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bc018c1d-a858-4829-900e-8d6bccf67ae0
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Menu Toggle
+      m_Flags: 0
     m_Flags: 0
 --- !u!114 &259537921
 MonoBehaviour:
