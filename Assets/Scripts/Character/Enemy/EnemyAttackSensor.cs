@@ -23,7 +23,7 @@ public class EnemyAttackSensor : Attack_Sensor
         _attackColliders[id].enabled = true;
         SetDamage(_attackDamages[id]);
     }
-    
+
     public override void SetDamage(int damage)
     {
         _damage = damage;
@@ -34,7 +34,7 @@ public class EnemyAttackSensor : Attack_Sensor
         var player = collision.GetComponent<Player>();
         if (player != null)
         {
-            player.GetHit(_damage);
+            player.ChangeHp(-_damage);
         }
         OffAllColiders();
     }

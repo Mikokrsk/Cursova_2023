@@ -7,6 +7,8 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Alive")]
     [SerializeField] public float health = 100;
+    [SerializeField] public float maxHealth = 100;
+    [SerializeField] public HealthSystem healthSystem;
     [Header("Move")]
     [SerializeField] public float speed = 18f;
     [SerializeField] public ConstantForce2D constantForce2D;

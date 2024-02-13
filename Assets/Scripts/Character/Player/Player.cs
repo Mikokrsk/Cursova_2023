@@ -30,9 +30,10 @@ public class Player : MonoBehaviour
         _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;
         _playerStats.grounded = _playerStats.ground_Sensor.Grounded();
     }
-    public void GetHit(int damage)
+    public void ChangeHp(int damage)
     {
-        _playerStats.health -= damage;
+       // _playerStats.health -= damage;
+       _playerStats.healthSystem.ChangeHp(damage);
         Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
     }
     /*    public void SetPlayerStats(PlayerStats playerStats)
