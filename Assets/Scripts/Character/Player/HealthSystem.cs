@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,7 +17,6 @@ public class HealthSystem : MonoBehaviour
         set
         {
             _health = value;
-            ChangeHp(0);
         }
     }
     public int MaxHealth
@@ -28,12 +28,20 @@ public class HealthSystem : MonoBehaviour
         set
         {
             _maxHealth = value;
-            ChangeHp(0);
         }
     }
-    public void ChangeHp(int amount)
+    public void UpdateHpBar()
     {
-        _health = Mathf.Clamp(_health + amount, 0, _maxHealth);
         GameUI.Instance.SetHealthValue(_health / (float)_maxHealth);
+    }
+    public void GetHit(int damage)
+    {
+        _health = Mathf.Clamp(_health - damage, 0, _maxHealth);
+        UpdateHpBar();
+    }
+    public void Heal(int heal) 
+    {
+        _health = Mathf.Clamp(_health + heal, 0, _maxHealth);
+        UpdateHpBar();
     }
 }

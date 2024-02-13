@@ -31,10 +31,10 @@ public class EnemyAttackSensor : Attack_Sensor
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var player = collision.GetComponent<Player>();
+        var player = collision.GetComponentInChildren<HealthSystem>();
         if (player != null)
         {
-            player.ChangeHp(-_damage);
+            player.GetHit(_damage);
         }
         OffAllColiders();
     }

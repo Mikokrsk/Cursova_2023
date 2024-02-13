@@ -1,3 +1,4 @@
+using Save;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,11 +7,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pause;
+    //[SerializeField] private GameObject pause;
     // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance { get; private set; }
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -21,12 +31,12 @@ public class GameManager : MonoBehaviour
             if(Time.timeScale == 1.0f)
             {
                 Time.timeScale = 0.0f;
-                pause.SetActive(true);
+               // pause.SetActive(true);
             }
             else
             {
                 Time .timeScale = 1.0f;
-                pause.SetActive(false);
+               // pause.SetActive(false);
             }
         }
     }

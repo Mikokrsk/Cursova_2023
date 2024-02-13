@@ -8,12 +8,12 @@ using UnityEngine.Rendering;
 public class Player : MonoBehaviour
 {
     [SerializeField] public PlayerStats _playerStats;
-   // public event Action startMove;
+    // public event Action startMove;
     //public event Action endMove;
     //public event Action jump;
-   /* public event Action attack1;
-    public event Action attack2;
-    public event Action attack3;*/
+    /* public event Action attack1;
+     public event Action attack2;
+     public event Action attack3;*/
     private void OnEnable()
     {
         _playerStats = GetComponent<PlayerStats>();
@@ -30,12 +30,12 @@ public class Player : MonoBehaviour
         _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;
         _playerStats.grounded = _playerStats.ground_Sensor.Grounded();
     }
-    public void ChangeHp(int damage)
-    {
-       // _playerStats.health -= damage;
-       _playerStats.healthSystem.ChangeHp(damage);
-     //   Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
-    }
+    /*    public void ChangeHp(int damage)
+        {
+           // _playerStats.health -= damage;
+           _playerStats.healthSystem.GetHit();
+         //   Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
+        }*/
     /*    public void SetPlayerStats(PlayerStats playerStats)
         {
             _playerStats = playerStats;
