@@ -6,8 +6,6 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Alive")]
-    [SerializeField] public float health = 100;
-    [SerializeField] public float maxHealth = 100;
     [SerializeField] public HealthSystem healthSystem;
     [Header("Move")]
     [SerializeField] public float speed = 18f;

@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     {
        // _playerStats.health -= damage;
        _playerStats.healthSystem.ChangeHp(damage);
-        Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
+     //   Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
     }
     /*    public void SetPlayerStats(PlayerStats playerStats)
         {
