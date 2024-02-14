@@ -7,9 +7,9 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Alive")]
     [SerializeField] public HealthSystem healthSystem;
-    [Header("Move")]
-    [SerializeField] public float speed = 18f;
-    [SerializeField] public ConstantForce2D constantForce2D;
+    //[Header("Move")]
+    //[SerializeField] public float speed = 18f;
+   // [SerializeField] public ConstantForce2D constantForce2D;
     [Header("Jump")]
     [SerializeField] public float jumpForse = 10f;
     [Header("Attack")]
@@ -29,8 +29,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Colliders")]
     [SerializeField] public Collider2D collider2D;
     [SerializeField] public PlayerGroundSensor ground_Sensor;
-    [Header("Rigidbody")]
-    [SerializeField] public Rigidbody2D rb;
+/*    [Header("Rigidbody")]
+    [SerializeField] public Rigidbody2D rb;*/
     [Header("Animations name")]
     [SerializeField] public string animJumpName = "HeroKnight_Jump";
     [SerializeField] public string animMoveName = "HeroKnight_Run";

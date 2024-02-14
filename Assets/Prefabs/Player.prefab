@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2512402578736414189}
   - component: {fileID: 8997122272921754227}
   - component: {fileID: 1915977206706456884}
-  - component: {fileID: 6783263443042067868}
   - component: {fileID: 2957070641136074344}
   - component: {fileID: 9024243210400911837}
   - component: {fileID: 5674638458523926418}
@@ -112,10 +111,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 80
   m_LinearDrag: 2
   m_AngularDrag: 0
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -368,17 +367,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.25}
   m_EdgeRadius: 0
---- !u!247 &6783263443042067868
-ConstantForce2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983492960974053226}
-  m_Enabled: 1
-  m_Force: {x: 0, y: 0}
-  m_RelativeForce: {x: 0, y: 0}
-  m_Torque: 0
 --- !u!114 &2957070641136074344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 4008352871177332675}
-  speed: 18
-  constantForce2D: {fileID: 0}
   jumpForse: 10
   attack1Delay: 0.8
   damageAttack1: 15
@@ -409,7 +395,6 @@ MonoBehaviour:
   vertical: 0
   collider2D: {fileID: 0}
   ground_Sensor: {fileID: 0}
-  rb: {fileID: 0}
   animJumpName: Jump
   animMoveName: Move
   animDeathName: Death
@@ -444,7 +429,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94de08a47e4f8d04e93e91ad1c4f0da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 5983492960974053226}
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8d4d2753-ce87-4db3-88dd-42c72b7e99af
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: fa85044f-666c-494c-a794-c87b74289e43
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 120d3dd9-099a-4380-9744-5c7c3faed2fc
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: aa4ce030-af4a-4255-bea9-cf35a156ba0c
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: 1D Axis
+      m_Id: 9bccf07f-28f7-46e4-bdb0-d81bc2b7109c
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: e6f1b2d0-f611-49c1-81fe-de3335fa7067
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: d7ded210-c75c-4f6e-b46a-e71f203d28f4
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  JumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 68dc58d2-b01a-44ed-ba81-3e46d0c1f5ca
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a14c9049-88b8-42ca-a8f3-f8c6ae4b49b4
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 70e97fdf-8bf2-4472-81d4-c09a56db4247
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    m_Flags: 0
+  horizontal: 0
+  _isMoving: 0
+  _isJumping: 0
+  rb: {fileID: 172955356537700336}
+  speedForce: 1100
+  jumpForce: 18
 --- !u!114 &5674638458523926418
 MonoBehaviour:
   m_ObjectHideFlags: 0

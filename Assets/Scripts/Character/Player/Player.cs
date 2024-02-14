@@ -17,17 +17,17 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         _playerStats = GetComponent<PlayerStats>();
-        _playerStats.constantForce2D = GetComponent<ConstantForce2D>();
+     //   _playerStats.constantForce2D = GetComponent<ConstantForce2D>();
         _playerStats.animator = GetComponent<Animator>();
         _playerStats.collider2D = GetComponent<Collider2D>();
         _playerStats.ground_Sensor = GetComponent<PlayerGroundSensor>();
-        _playerStats.rb = GetComponent<Rigidbody2D>();
+      //  _playerStats.rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
+/*        _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
         _playerStats.rbVelosityMagnitydeX = _playerStats.rb.velocity.x;
-        _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;
+        _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;*/
         _playerStats.grounded = _playerStats.ground_Sensor.Grounded();
     }
     /*    public void ChangeHp(int damage)
