@@ -7,11 +7,6 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Alive")]
     [SerializeField] public HealthSystem healthSystem;
-    //[Header("Move")]
-    //[SerializeField] public float speed = 18f;
-   // [SerializeField] public ConstantForce2D constantForce2D;
-    [Header("Jump")]
-    [SerializeField] public float jumpForse = 10f;
     [Header("Attack")]
     [SerializeField] public float attack1Delay;
     [SerializeField] public int damageAttack1;
@@ -19,29 +14,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int damageAttack2;
     [SerializeField] public float attack3Delay;
     [SerializeField] public int damageAttack3;
-    [Header("Animations values")]
-    [SerializeField] public Animator animator;
-    [SerializeField] public float rbVelosityMagnityde;
-    [SerializeField] public float rbVelosityMagnitydeX;
-    [SerializeField] public float rbVelosityMagnitydeY;
-    [SerializeField] public float horizontal;
-    [SerializeField] public float vertical;
     [Header("Colliders")]
     [SerializeField] public Collider2D collider2D;
-    [SerializeField] public PlayerGroundSensor ground_Sensor;
-/*    [Header("Rigidbody")]
-    [SerializeField] public Rigidbody2D rb;*/
-    [Header("Animations name")]
-    [SerializeField] public string animJumpName = "HeroKnight_Jump";
-    [SerializeField] public string animMoveName = "HeroKnight_Run";
-    [SerializeField] public string animDeathName = "HeroKnight_Death";
-    [SerializeField] public string animHitName = "HeroKnight_Hurt";
-    [SerializeField] public string animAttack1Name = "HeroKnight_Attack1";
-    [SerializeField] public string animAttack2Name = "HeroKnight_Attack2";
-    [SerializeField] public string animAttack3Name = "HeroKnight_Attack3";
-    [SerializeField] public string animIdleName = "HeroKnight_Idle";
-    [SerializeField] public string animAirSpeedYName = "AirSpeedY";
-    [SerializeField] public string animGroundedName = "Grounded";
     [Header("Stats")]
     [SerializeField] public bool isStunned = false;
     [SerializeField] public bool grounded = true;

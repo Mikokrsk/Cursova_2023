@@ -7,65 +7,37 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] public PlayerStats _playerStats;
-    // public event Action startMove;
-    //public event Action endMove;
-    //public event Action jump;
-    /* public event Action attack1;
-     public event Action attack2;
-     public event Action attack3;*/
-    private void OnEnable()
-    {
-        _playerStats = GetComponent<PlayerStats>();
-     //   _playerStats.constantForce2D = GetComponent<ConstantForce2D>();
-        _playerStats.animator = GetComponent<Animator>();
-        _playerStats.collider2D = GetComponent<Collider2D>();
-        _playerStats.ground_Sensor = GetComponent<PlayerGroundSensor>();
-      //  _playerStats.rb = GetComponent<Rigidbody2D>();
-    }
-    private void Update()
-    {
-/*        _playerStats.rbVelosityMagnityde = _playerStats.rb.velocity.magnitude;
-        _playerStats.rbVelosityMagnitydeX = _playerStats.rb.velocity.x;
-        _playerStats.rbVelosityMagnitydeY = _playerStats.rb.velocity.y;*/
-        _playerStats.grounded = _playerStats.ground_Sensor.Grounded();
-    }
-    /*    public void ChangeHp(int damage)
-        {
-           // _playerStats.health -= damage;
-           _playerStats.healthSystem.GetHit();
-         //   Debug.Log($"Player Get Hit damage = {damage} Health now = {_playerStats.health}");
-        }*/
-    /*    public void SetPlayerStats(PlayerStats playerStats)
-        {
-            _playerStats = playerStats;
-        }
-        public PlayerStats GetPlayerStats()
-        {
-            return _playerStats;
-        }
-        public PlayerAnimationController GetPlayerAnimationController()
-        {
-            return _playerStats._animController;
-        }
-        public void SetPlayerAnimationController(PlayerAnimationController animController)
-        {
-            _animController = animController;
-        }
-        public PlayerGroundSensor GetPlayerGroundSensor()
-        {
-            return _groundSensor;
-        }
-        public void SetPlayerGroundSensor(PlayerGroundSensor groundSensor)
-        {
-            _groundSensor = groundSensor;
-        }
-        public PlayerMoveController GetPlayerMoveController()
-        {
-            return _moveController;
-        }
-        public void SetPlayerMoveController(PlayerMoveController moveController)
-        {
-            _moveController = moveController;
-        }*/
+    [Header("Alive")]
+    [SerializeField] public HealthSystem healthSystem;
+    [Header("Attack")]
+    [SerializeField] public float attack1Delay;
+    [SerializeField] public int damageAttack1;
+    [SerializeField] public float attack2Delay;
+    [SerializeField] public int damageAttack2;
+    [SerializeField] public float attack3Delay;
+    [SerializeField] public int damageAttack3;
+    [Header("Colliders")]
+    [SerializeField] public Collider2D collider2D;
+    [Header("Stats")]
+    [SerializeField] public bool isStunned = false;
+    [SerializeField] public bool grounded = true;
+    [SerializeField] public bool isAlive = true;
+    [SerializeField] public bool isMove = false;
+    [SerializeField] public bool isAttack = false;
+    [Header("Controll Key")]
+    [SerializeField] public KeyCode attack1KeyCode = KeyCode.Alpha1;
+    [SerializeField] public KeyCode attack2KeyCode = KeyCode.Alpha2;
+    [SerializeField] public KeyCode attack3KeyCode = KeyCode.Alpha3;
+    [SerializeField] public KeyCode jumpKeyCode = KeyCode.Space;
+    [Header("Components")]
+    [SerializeField] public PlayerAnimationController _animController;
+    [SerializeField] public PlayerGroundSensor _groundSensor;
+    [SerializeField] public PlayerMoveController _moveController;
+    [Header("Events")]
+    public Action jump;
+    public Action startMove;
+    public Action endMove;
+    public Action attack1;
+    public Action attack2;
+    public Action attack3;
 }

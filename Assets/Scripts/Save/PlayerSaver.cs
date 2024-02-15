@@ -33,16 +33,16 @@ namespace Save
         {
             ExtendedComponentData data = new ExtendedComponentData();
             data.SetTransform(_transformName, _transform);
-            data.SetInt(_curentHealthName, _player._playerStats.healthSystem.Health);
-            data.SetInt(_maxHealthName, _player._playerStats.healthSystem.MaxHealth);
+            data.SetInt(_curentHealthName, _player.healthSystem.Health);
+            data.SetInt(_maxHealthName, _player.healthSystem.MaxHealth);
             return data;
         }
         public void Deserialize(ComponentData data)
         {
             ExtendedComponentData unpacked = (ExtendedComponentData)data;
             unpacked.GetTransform(_transformName, _transform);
-            _player._playerStats.healthSystem.Health = unpacked.GetInt(_curentHealthName);
-            _player._playerStats.healthSystem.MaxHealth = unpacked.GetInt(_maxHealthName);
+            _player.healthSystem.Health = unpacked.GetInt(_curentHealthName);
+            _player.healthSystem.MaxHealth = unpacked.GetInt(_maxHealthName);
         }
     }
 }

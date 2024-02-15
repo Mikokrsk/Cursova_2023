@@ -16,56 +16,56 @@ public class CombatController : MonoBehaviour
     {
         if (_player != null)
         {
-            _player._playerStats.attack1 += Attack1;
-            _player._playerStats.attack2 += Attack2;
-            _player._playerStats.attack3 += Attack3;
+            _player.attack1 += Attack1;
+            _player.attack2 += Attack2;
+            _player.attack3 += Attack3;
         }
     }
 
     void Update()
     {
         //Attack
-        if (_player._playerStats.isAttack)
+        if (_player.isAttack)
         {
             return;
         }
-        if (Input.GetKeyDown(_player._playerStats.attack1KeyCode))
+        if (Input.GetKeyDown(_player.attack1KeyCode))
         {
-            _player._playerStats.attack1.Invoke();
+            _player.attack1.Invoke();
         }
-        if (Input.GetKeyDown(_player._playerStats.attack2KeyCode))
+        if (Input.GetKeyDown(_player.attack2KeyCode))
         {
-            _player._playerStats.attack2.Invoke();
+            _player.attack2.Invoke();
         }
-        if (Input.GetKeyDown(_player._playerStats.attack3KeyCode))
+        if (Input.GetKeyDown(_player.attack3KeyCode))
         {
-            _player._playerStats.attack3.Invoke();
+            _player.attack3.Invoke();
         }
     }
     public void Attack1()
     {
-        _attackSensor.SetDamage(_player._playerStats.damageAttack1);
+        _attackSensor.SetDamage(_player.damageAttack1);
         _attackSensor.EnableAttack1Collider();
 
-        StartCoroutine(Attack(_player._playerStats.attack1Delay));
+        StartCoroutine(Attack(_player.attack1Delay));
     }
     public void Attack2()
     {
-        _attackSensor.SetDamage(_player._playerStats.damageAttack2);
+        _attackSensor.SetDamage(_player.damageAttack2);
         _attackSensor.EnableAttack2Collider();
-        StartCoroutine(Attack(_player._playerStats.attack2Delay));
+        StartCoroutine(Attack(_player.attack2Delay));
     }
     public void Attack3()
     {
-        _attackSensor.SetDamage(_player._playerStats.damageAttack3);
+        _attackSensor.SetDamage(_player.damageAttack3);
         _attackSensor.EnableAttack3Collider();
-        StartCoroutine(Attack(_player._playerStats.attack3Delay));
+        StartCoroutine(Attack(_player.attack3Delay));
     }
     private IEnumerator Attack(float attackDelay)
     {
-        _player._playerStats.isAttack = true;
+        _player.isAttack = true;
         yield return new WaitForSeconds(attackDelay);
-        _player._playerStats.isAttack = false;
+        _player.isAttack = false;
         _attackSensor.OffAllColiders();
     }
 }

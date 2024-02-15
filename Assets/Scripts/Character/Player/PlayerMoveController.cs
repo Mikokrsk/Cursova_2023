@@ -10,25 +10,21 @@ using UnityEngine.Profiling;
 
 public class PlayerMoveController : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] private Player _player;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] public PlayerGroundSensor playerGroundSensor;
+    [Header("Move")]
     [SerializeField] private InputAction MoveAction;
-    [SerializeField] private InputAction JumpAction;
     [SerializeField] private float horizontal;
     [SerializeField] private bool _isMoving = false;
-    [SerializeField] private bool _isJumping = false;
-    [SerializeField] public Rigidbody2D rb;
     [SerializeField] public float speedForce = 18f;
+    [Header("Jump")]
+    [SerializeField] private InputAction JumpAction;
     [SerializeField] public float jumpForce = 18f;
-
+    public bool isJumping = false;
 
     private void Start()
     {
-        /*                if (_player != null)
-                        {
-                            _player._playerStats.startMove += StartMove;
-                            _player._playerStats.endMove += EndMove;
-                            _player._playerStats.jump += Jump;
-                        }*/
         MoveAction.Enable();
         JumpAction.Enable();
         JumpAction.performed += Jump;
@@ -36,41 +32,25 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
-        /*        Profiler.BeginSample("PlayerMoveController Update");
-                _player._playerStats.horizontal = Input.GetAxis("Horizontal");
-                if (_player._playerStats.horizontal != 0)
-                {
-                    _player._playerStats.startMove?.Invoke();
-                }
-                else
-                {
-                    _player._playerStats.endMove?.Invoke();
-                }
-                if (Input.GetKeyDown(_player._playerStats.jumpKeyCode) && _player._playerStats.grounded)
-                {
-                   _player._playerStats.jump?.Invoke();
-                }
-                Profiler.EndSample();*/
         horizontal = MoveAction.ReadValue<float>();
 
         if (horizontal != 0)
         {
             _isMoving = true;
+            _player._animController.StartMove();
         }
         else
         {
             _isMoving = false;
+            _player._animController.EndMove();
         }
-        /*        if (!Mathf.Approximately(horizontal.x, 0.0f) || !Mathf.Approximately(horizontal.y, 0.0f))
-                {
-                    moveDirection.Set(horizontal.x, horizontal.y);
-                    moveDirection.Normalize();
-                }*/
+        if (playerGroundSensor.Grounded())
+        {
+            isJumping = false;
+        }
     }
     private void FixedUpdate()
     {
-        /*        Vector2 position = (Vector2)rb.position + horizontal * speed * Time.deltaTime;
-                rb.MovePosition(position);*/
         if (_isMoving)
         {
             Vector2 moveVector = new Vector2(horizontal * speedForce, 0);
@@ -80,24 +60,12 @@ public class PlayerMoveController : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-    }
-    /*
-        public void StartMove()
+        if (!isJumping)
         {
-            Profiler.BeginSample("PlayerMoveController Move");
-
-            var direction = _player._playerStats.horizontal > 0 ? 1 : -1;
-
-            gameObject.transform.localScale = new Vector2(direction, 1);
-
-            var vectorForce = new Vector2(direction * _player._playerStats.speed, 0);
-            _player._playerStats.constantForce2D.force = vectorForce;
-            Profiler.EndSample();
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            // _player.jump?.Invoke();
+            _player._animController.Jump();
+            isJumping = true;
         }
-
-        public void EndMove()
-        {
-            _player._playerStats.constantForce2D.force = Vector2.zero;
-        }*/
+    }
 }
