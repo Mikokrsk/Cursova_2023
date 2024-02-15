@@ -23,11 +23,17 @@ public class PlayerMoveController : MonoBehaviour
     [SerializeField] public float jumpForce = 18f;
     public bool isJumping = false;
 
-    private void Start()
+    void OnEnable()
     {
         MoveAction.Enable();
         JumpAction.Enable();
         JumpAction.performed += Jump;
+    }
+    private void OnDisable()
+    {
+        MoveAction.Disable();
+        JumpAction.Disable();
+        JumpAction.performed -= Jump;
     }
 
     void Update()
@@ -63,7 +69,6 @@ public class PlayerMoveController : MonoBehaviour
         if (!isJumping)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            // _player.jump?.Invoke();
             _player._animController.Jump();
             isJumping = true;
         }
