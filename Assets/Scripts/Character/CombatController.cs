@@ -7,6 +7,7 @@ public class CombatController : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Attack_Sensor _attackSensor;
+    public bool isAttacking = false;
     private void OnEnable()
     {
         _player = GetComponent<Player>();
@@ -25,7 +26,7 @@ public class CombatController : MonoBehaviour
     void Update()
     {
         //Attack
-        if (_player.isAttack)
+        if (isAttacking)
         {
             return;
         }
@@ -46,7 +47,6 @@ public class CombatController : MonoBehaviour
     {
         _attackSensor.SetDamage(_player.damageAttack1);
         _attackSensor.EnableAttack1Collider();
-
         StartCoroutine(Attack(_player.attack1Delay));
     }
     public void Attack2()
@@ -68,4 +68,5 @@ public class CombatController : MonoBehaviour
         _player.isAttack = false;
         _attackSensor.OffAllColiders();
     }
+
 }

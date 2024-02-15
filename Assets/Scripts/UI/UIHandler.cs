@@ -26,7 +26,7 @@ public class UIHandler : MonoBehaviour
 
     private void Start()
     {
-        ChangeGameMode(GameMode.MainMenu);
+        ChangeGameMode(_gameMode);
     }
 
     public void ChangeGameMode(GameMode gameMode)

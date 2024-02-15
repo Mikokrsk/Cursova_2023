@@ -38,6 +38,13 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
+        if (_player.combatController.isAttacking)
+        {
+            _isMoving = false;
+            _player._animController.EndMove();
+            return;
+        }
+
         horizontal = MoveAction.ReadValue<float>();
 
         if (horizontal != 0)

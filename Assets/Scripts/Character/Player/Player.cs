@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] public PlayerAnimationController _animController;
     [SerializeField] public PlayerGroundSensor _groundSensor;
     [SerializeField] public PlayerMoveController _moveController;
+    public CombatController combatController;
     [Header("Events")]
     public Action jump;
     public Action startMove;
