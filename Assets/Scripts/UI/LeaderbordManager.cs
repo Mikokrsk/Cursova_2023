@@ -1,41 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class LeaderbordManager : MonoBehaviour
 {
     private ScrollView _scrollView;
     private List<ItemProperty> players = new List<ItemProperty>();
+    [SerializeField] private string _name;
+    [SerializeField] private int _points;
     private void OnEnable()
     {
         _scrollView = UIHandler.Instance._uiDocument.rootVisualElement.Q<ScrollView>("LeaderbordScrollView");
-        AddNewPlayer("111", 1, 1);
+        AddNewPlayer(_name, _points);
+        UpdateList();
     }
     private void Start()
     {
         players.Clear();
-        players.Add(new ItemProperty("111", 1, 1));
-        players.Add(new ItemProperty("222", 2, 2));
-        players.Add(new ItemProperty("333", 3, 3));
         UpdateList();
     }
-    private void AddNewPlayer(string name, int points, int position)
+    private void AddNewPlayer(string name, int points)
     {
-        players.Add(new ItemProperty(name, points, position));
+        players.Add(new ItemProperty(name, points));
         UpdateList();
     }
     private void UpdateList()
     {
+        _scrollView.contentContainer.Clear();
+        int position = 1;
+        players = players.OrderByDescending(x => Int32.Parse(x.playerPoints.text)).ToList();
         foreach (var item in players)
         {
             VisualElement player = new VisualElement();
             player.style.flexDirection = FlexDirection.Row;
             player.Add(item.playerName);
             player.Add(item.playerPoints);
+            item.playerPosition.text = position.ToString();
             player.Add(item.playerPosition);
             _scrollView.Add(player);
+            position += 1;
         }
     }
 }
@@ -46,11 +54,11 @@ public class ItemProperty
     public Label playerPoints;
     public Label playerPosition;
 
-    public ItemProperty(string name, int points, int position)
+    public ItemProperty(string name, int points)
     {
         playerName = new Label(name);
         playerPoints = new Label(points.ToString());
-        playerPosition = new Label(position.ToString());
+        playerPosition = new Label();
 
         playerName.style.flexGrow = 1;
         playerPoints.style.flexGrow = 1;
@@ -63,5 +71,9 @@ public class ItemProperty
         playerName.style.unityFontStyleAndWeight = FontStyle.Bold;
         playerPoints.style.unityFontStyleAndWeight = FontStyle.Bold;
         playerPosition.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+        playerName.style.unityTextAlign = TextAnchor.MiddleCenter;
+        playerPoints.style.unityTextAlign = TextAnchor.MiddleCenter;
+        playerPosition.style.unityTextAlign = TextAnchor.MiddleCenter;
     }
 }
