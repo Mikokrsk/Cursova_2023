@@ -13,10 +13,12 @@ public class LeaderbordManager : MonoBehaviour
     private List<ItemProperty> players = new List<ItemProperty>();
     [SerializeField] private string _name;
     [SerializeField] private int _points;
+    [SerializeField] private bool _createNewPlayer;
     private void OnEnable()
     {
         _scrollView = UIHandler.Instance._uiDocument.rootVisualElement.Q<ScrollView>("LeaderbordScrollView");
-        AddNewPlayer(_name, _points);
+        if (_createNewPlayer)
+            AddNewPlayer(_name, _points);
         UpdateList();
     }
     private void Start()
@@ -26,8 +28,24 @@ public class LeaderbordManager : MonoBehaviour
     }
     private void AddNewPlayer(string name, int points)
     {
-        players.Add(new ItemProperty(name, points));
+        if (!FindDublicateByName(name, points))
+            players.Add(new ItemProperty(name, points));
         UpdateList();
+    }
+    private bool FindDublicateByName(string name, int points)
+    {
+        foreach (var player in players)
+        {
+            if (player.playerName.text == name)
+            {
+                if (Int32.Parse(player.playerPoints.text) < points)
+                {
+                    player.playerPoints.text = points.ToString();
+                }
+                return true;
+            }
+        }
+        return false;
     }
     private void UpdateList()
     {
