@@ -11,19 +11,23 @@ public class LeaderbordManager : MonoBehaviour
 {
     private ScrollView _scrollView;
     private List<ItemProperty> players = new List<ItemProperty>();
+    private List<LeaderbordData> _leaderbordData = new List<LeaderbordData>();
     [SerializeField] private string _name;
     [SerializeField] private int _points;
     [SerializeField] private bool _createNewPlayer;
+    [SerializeField] private bool _save;
     private void OnEnable()
     {
         _scrollView = UIHandler.Instance._uiDocument.rootVisualElement.Q<ScrollView>("LeaderbordScrollView");
         if (_createNewPlayer)
             AddNewPlayer(_name, _points);
+        // LoadLeaderbordData();
         UpdateList();
     }
     private void Start()
     {
         players.Clear();
+        LoadLeaderbordData();
         UpdateList();
     }
     private void AddNewPlayer(string name, int points)
@@ -63,6 +67,27 @@ public class LeaderbordManager : MonoBehaviour
             _scrollView.Add(player);
             position += 1;
         }
+        if (_save)
+        {
+            SaveLeaderbordData();
+        }
+    }
+    private void SaveLeaderbordData()
+    {
+        foreach (var player in players)
+        {
+            _leaderbordData.Add(new LeaderbordData(player.playerName.text, player.playerPoints.text, player.playerPosition.text));
+        }
+        DataBridge.Instance.SaveLeaderbordData(_leaderbordData);
+    }
+    private async void LoadLeaderbordData()
+    {
+        List<LeaderbordData> list = await DataBridge.Instance.LoadLeaderboardData();
+        players.Clear();
+        foreach (var player in list)
+        {
+            players.Add(new ItemProperty(player.playerName, Int32.Parse(player.playerPoints)));
+        }
     }
 }
 
@@ -93,5 +118,21 @@ public class ItemProperty
         playerName.style.unityTextAlign = TextAnchor.MiddleCenter;
         playerPoints.style.unityTextAlign = TextAnchor.MiddleCenter;
         playerPosition.style.unityTextAlign = TextAnchor.MiddleCenter;
+    }
+}
+
+
+[Serializable]
+public class LeaderbordData
+{
+    public string playerName;
+    public string playerPoints;
+    public string playerPosition;
+
+    public LeaderbordData(string _playerName, string _playerPoints, string _playerPosition)
+    {
+        this.playerName = _playerName;
+        this.playerPoints = _playerPoints;
+        this.playerPosition = _playerPosition;
     }
 }
