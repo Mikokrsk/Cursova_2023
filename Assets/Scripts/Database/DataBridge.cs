@@ -4,14 +4,12 @@ using UnityEngine;
 using Firebase;
 using Firebase.Database;
 using System;
-using UnityEngine;
-using UnityEditor.PackageManager;
 using System.Threading.Tasks;
 //using Firebase.Unity.Editor;
 
 public class DataBridge : MonoBehaviour
 {
-    private TestDatabasePlayer _data;
+    // private TestDatabasePlayer _data;
     private string DATA_URL = "https://cursova-2023-default-rtdb.europe-west1.firebasedatabase.app/";
     public static DataBridge Instance { get; private set; }
 
@@ -29,44 +27,26 @@ public class DataBridge : MonoBehaviour
     }
     private DatabaseReference _databaseReference;
     private FirebaseDatabase _database;
+
     private void Start()
     {
         _database = FirebaseDatabase.GetInstance(DATA_URL);
         _databaseReference = _database.RootReference;
-        //  SaveDate();
     }
-    /*
-        public void SaveDate()
-        {
-            _data = new TestDatabasePlayer("mk2", 101);
-            string jsonData = JsonUtility.ToJson(_data);
-            _databaseReference.Child("User").SetRawJsonValueAsync(jsonData);
-        }*/
-    public void SaveLeaderbordData(List<LeaderbordData> leaderbordData)
+
+    public void SaveLeaderboardData(List<LeaderboardData> leaderboardData)
     {
-        foreach (var player in leaderbordData)
+        foreach (var player in leaderboardData)
         {
             var data = player;
             string jsonData = JsonUtility.ToJson(data);
-            _databaseReference.Child($"User {player.playerPosition}").SetRawJsonValueAsync(jsonData);
+            _databaseReference.Child($"User {player.playerName}").SetRawJsonValueAsync(jsonData);
         }
     }
-    /*    public void LoadDate()
-        {
-            List<LeaderbordData> leaderbordData;
-            var jsonData = _databaseReference.Child("User 1").GetValueAsync();
-            jsonData.
-                // _databaseReference.Child($"User {1}").GetValueAsync().ToString();
-            Debug.Log(jsonData);
 
-
-                // return leaderbordData;
-            }*/
-
-
-    public async Task<List<LeaderbordData>> LoadLeaderboardData()
+    public async Task<List<LeaderboardData>> LoadLeaderboardDataAsync()
     {
-        List<LeaderbordData> leaderboardDataList = new List<LeaderbordData>();
+        List<LeaderboardData> leaderboardDataList = new List<LeaderboardData>();
 
         try
         {
@@ -78,10 +58,9 @@ public class DataBridge : MonoBehaviour
 
                     string jsonData = childSnapshot.GetRawJsonValue();
 
-                    LeaderbordData playerData = JsonUtility.FromJson<LeaderbordData>(jsonData);
+                    LeaderboardData playerData = JsonUtility.FromJson<LeaderboardData>(jsonData);
 
                     leaderboardDataList.Add(playerData);
-                    Debug.Log(playerData.playerName);
                 }
             }
             else

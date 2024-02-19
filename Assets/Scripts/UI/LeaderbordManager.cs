@@ -4,41 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class LeaderbordManager : MonoBehaviour
+public class LeaderboardManager : MonoBehaviour
 {
     private ScrollView _scrollView;
-    private List<ItemProperty> players = new List<ItemProperty>();
-    private List<LeaderbordData> _leaderbordData = new List<LeaderbordData>();
+    private List<LeaderboardLabelsObject> LeaderboardLabelsObjectsList = new List<LeaderboardLabelsObject>();
+    private List<LeaderboardData> _leaderboardDataList = new List<LeaderboardData>();
     [SerializeField] private string _name;
     [SerializeField] private int _points;
-    [SerializeField] private bool _createNewPlayer;
-    [SerializeField] private bool _save;
-    private void OnEnable()
+    private void Awake()
     {
         _scrollView = UIHandler.Instance._uiDocument.rootVisualElement.Q<ScrollView>("LeaderbordScrollView");
-        if (_createNewPlayer)
-            AddNewPlayer(_name, _points);
-        // LoadLeaderbordData();
-        UpdateList();
+        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("AddNewPlayerButton").clickable.clicked += AddNewPlayer;
+        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("LoadLeaderboardButton").clickable.clicked += LoadLeaderbordData;
     }
     private void Start()
     {
-        players.Clear();
+        LeaderboardLabelsObjectsList.Clear();
         LoadLeaderbordData();
         UpdateList();
     }
-    private void AddNewPlayer(string name, int points)
+
+
+    private void AddNewPlayer()
     {
+        string name = UIHandler.Instance._uiDocument.rootVisualElement.Q<TextField>("PlayerNameTextFiel").value;
+        int points = Int32.Parse(UIHandler.Instance._uiDocument.rootVisualElement.Q<TextField>("PLayerPointsTextField").value);
+
         if (!FindDublicateByName(name, points))
-            players.Add(new ItemProperty(name, points));
+            LeaderboardLabelsObjectsList.Add(new LeaderboardLabelsObject(name, points));
+        SaveLeaderbordData();
+        _scrollView.contentContainer.Clear();
         UpdateList();
     }
     private bool FindDublicateByName(string name, int points)
     {
-        foreach (var player in players)
+        foreach (var player in LeaderboardLabelsObjectsList)
         {
             if (player.playerName.text == name)
             {
@@ -55,8 +57,8 @@ public class LeaderbordManager : MonoBehaviour
     {
         _scrollView.contentContainer.Clear();
         int position = 1;
-        players = players.OrderByDescending(x => Int32.Parse(x.playerPoints.text)).ToList();
-        foreach (var item in players)
+        LeaderboardLabelsObjectsList = LeaderboardLabelsObjectsList.OrderByDescending(x => Int32.Parse(x.playerPoints.text)).ToList();
+        foreach (var item in LeaderboardLabelsObjectsList)
         {
             VisualElement player = new VisualElement();
             player.style.flexDirection = FlexDirection.Row;
@@ -67,37 +69,34 @@ public class LeaderbordManager : MonoBehaviour
             _scrollView.Add(player);
             position += 1;
         }
-        if (_save)
-        {
-            SaveLeaderbordData();
-        }
     }
     private void SaveLeaderbordData()
     {
-        foreach (var player in players)
+        foreach (var player in LeaderboardLabelsObjectsList)
         {
-            _leaderbordData.Add(new LeaderbordData(player.playerName.text, player.playerPoints.text, player.playerPosition.text));
+            _leaderboardDataList.Add(new LeaderboardData(player.playerName.text, player.playerPoints.text));
         }
-        DataBridge.Instance.SaveLeaderbordData(_leaderbordData);
+        DataBridge.Instance.SaveLeaderboardData(_leaderboardDataList);
     }
     private async void LoadLeaderbordData()
     {
-        List<LeaderbordData> list = await DataBridge.Instance.LoadLeaderboardData();
-        players.Clear();
+        List<LeaderboardData> list = await DataBridge.Instance.LoadLeaderboardDataAsync();
+        LeaderboardLabelsObjectsList.Clear();
         foreach (var player in list)
         {
-            players.Add(new ItemProperty(player.playerName, Int32.Parse(player.playerPoints)));
+            LeaderboardLabelsObjectsList.Add(new LeaderboardLabelsObject(player.playerName, Int32.Parse(player.playerPoints)));
         }
+        UpdateList();
     }
 }
 
-public class ItemProperty
+public class LeaderboardLabelsObject
 {
     public Label playerName;
     public Label playerPoints;
     public Label playerPosition;
 
-    public ItemProperty(string name, int points)
+    public LeaderboardLabelsObject(string name, int points)
     {
         playerName = new Label(name);
         playerPoints = new Label(points.ToString());
@@ -123,16 +122,14 @@ public class ItemProperty
 
 
 [Serializable]
-public class LeaderbordData
+public class LeaderboardData
 {
     public string playerName;
     public string playerPoints;
-    public string playerPosition;
 
-    public LeaderbordData(string _playerName, string _playerPoints, string _playerPosition)
+    public LeaderboardData(string _playerName, string _playerPoints)
     {
         this.playerName = _playerName;
         this.playerPoints = _playerPoints;
-        this.playerPosition = _playerPosition;
     }
 }
