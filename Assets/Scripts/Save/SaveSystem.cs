@@ -52,7 +52,8 @@ namespace Save
 
             foreach (var savableComponent in GetOrderedSavableComponents())
             {
-                componentsData.Add(savableComponent.uniqueID, savableComponent.Serialize());
+                if (!componentsData.ContainsKey(savableComponent.uniqueID))
+                    componentsData.Add(savableComponent.uniqueID, savableComponent.Serialize());
             }
 
             BinaryFormatter formatter = new BinaryFormatter();
