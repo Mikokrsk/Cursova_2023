@@ -11,21 +11,22 @@ public class LeaderboardManager : MonoBehaviour
     private ScrollView _scrollView;
     private List<LeaderboardLabelsObject> LeaderboardLabelsObjectsList = new List<LeaderboardLabelsObject>();
     private List<LeaderboardData> _leaderboardDataList = new List<LeaderboardData>();
-    [SerializeField] private string _name;
-    [SerializeField] private int _points;
+    [SerializeField] private VisualElement leaderboardMenuUI;
     private void Awake()
     {
         _scrollView = UIHandler.Instance._uiDocument.rootVisualElement.Q<ScrollView>("LeaderbordScrollView");
+        leaderboardMenuUI = UIHandler.Instance._uiDocument.rootVisualElement.Q<VisualElement>("LeaderbordMenuUI");
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("AddNewPlayerButton").clickable.clicked += AddNewPlayer;
-        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("LoadLeaderboardButton").clickable.clicked += LoadLeaderbordData;
+        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("LoadLeaderboardButton").clickable.clicked += LoadLeaderboardData;
+        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("CloseLeaderboardButton").clickable.clicked += CloseLeaderboard;
     }
     private void Start()
     {
         LeaderboardLabelsObjectsList.Clear();
-        LoadLeaderbordData();
+        _scrollView.hierarchy.Clear();
+        LoadLeaderboardData();
         UpdateList();
     }
-
 
     private void AddNewPlayer()
     {
@@ -34,7 +35,7 @@ public class LeaderboardManager : MonoBehaviour
 
         if (!FindDublicateByName(name, points))
             LeaderboardLabelsObjectsList.Add(new LeaderboardLabelsObject(name, points));
-        SaveLeaderbordData();
+        SaveLeaderboardData();
         _scrollView.contentContainer.Clear();
         UpdateList();
     }
@@ -55,7 +56,7 @@ public class LeaderboardManager : MonoBehaviour
     }
     private void UpdateList()
     {
-        _scrollView.contentContainer.Clear();
+        _scrollView.hierarchy.Clear();
         int position = 1;
         LeaderboardLabelsObjectsList = LeaderboardLabelsObjectsList.OrderByDescending(x => Int32.Parse(x.playerPoints.text)).ToList();
         foreach (var item in LeaderboardLabelsObjectsList)
@@ -66,11 +67,11 @@ public class LeaderboardManager : MonoBehaviour
             player.Add(item.playerPoints);
             item.playerPosition.text = position.ToString();
             player.Add(item.playerPosition);
-            _scrollView.Add(player);
+            _scrollView.hierarchy.Add(player);
             position += 1;
         }
     }
-    private void SaveLeaderbordData()
+    private void SaveLeaderboardData()
     {
         foreach (var player in LeaderboardLabelsObjectsList)
         {
@@ -78,7 +79,7 @@ public class LeaderboardManager : MonoBehaviour
         }
         DataBridge.Instance.SaveLeaderboardData(_leaderboardDataList);
     }
-    private async void LoadLeaderbordData()
+    private async void LoadLeaderboardData()
     {
         List<LeaderboardData> list = await DataBridge.Instance.LoadLeaderboardDataAsync();
         LeaderboardLabelsObjectsList.Clear();
@@ -87,6 +88,15 @@ public class LeaderboardManager : MonoBehaviour
             LeaderboardLabelsObjectsList.Add(new LeaderboardLabelsObject(player.playerName, Int32.Parse(player.playerPoints)));
         }
         UpdateList();
+    }
+
+    private void CloseLeaderboard()
+    {
+        leaderboardMenuUI.style.display = DisplayStyle.None;
+    }
+    public void OpenLeaderboard()
+    {
+        leaderboardMenuUI.style.display = DisplayStyle.Flex;
     }
 }
 
