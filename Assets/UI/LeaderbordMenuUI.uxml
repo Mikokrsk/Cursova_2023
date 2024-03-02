@@ -7,5 +7,16 @@
             <ui:Label tabindex="-1" text="Position" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PositionLabel" style="height: 100%; flex-grow: 1; -unity-text-align: upper-center;" />
         </ui:VisualElement>
         <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="LeaderbordScrollView" style="width: 100%; height: 100%;" />
+        <ui:VisualElement style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: space-between; align-self: center; width: 100%; height: 160px;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; height: auto; align-items: center; justify-content: center;">
+                <ui:TextField picking-mode="Ignore" label="Name" value="filler text" name="PlayerNameTextFiel" style="font-size: 40px; -unity-font-style: bold; flex-grow: 0; width: 45%;" />
+                <ui:TextField picking-mode="Ignore" label="Points" value="filler text" name="PLayerPointsTextField" style="font-size: 40px; -unity-font-style: bold; flex-grow: 0; width: 45%;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; width: 100%; height: auto; flex-direction: row; justify-content: center;">
+                <ui:Button text="AddNewPlayer" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddNewPlayerButton" style="flex-grow: 1; flex-shrink: 0; height: 100%; font-size: 40px; -unity-font-style: bold; width: auto;" />
+                <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadLeaderboardButton" style="flex-grow: 1; flex-shrink: 0; height: 100%; font-size: 40px; -unity-font-style: bold; width: auto;" />
+                <ui:Button text="Close" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseLeaderboardButton" style="flex-grow: 1; flex-shrink: 0; height: 100%; font-size: 40px; -unity-font-style: bold; width: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
