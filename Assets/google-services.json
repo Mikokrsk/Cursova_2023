@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1032816629120",
+    "project_id": "cursova-2023",
+    "storage_bucket": "cursova-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032816629120:android:2d6e6df6829055a4351d65",
+        "android_client_info": {
+          "package_name": "com.MK.Cursova_2023"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpHoXild9BKJarTVkDpkjmV7BLEMdW3AQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

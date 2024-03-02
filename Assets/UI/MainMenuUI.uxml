@@ -3,6 +3,7 @@
     <ui:VisualElement name="Background" class="menu-window-style">
         <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="menu-button-style" />
         <ui:Button text="OpenSettingsMenu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenSettingsMenuButton" class="menu-button-style" style="margin-top: 40px;" />
+        <ui:Button text="Open Leaderboard" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenLeaderboardMenuButton" enable-rich-text="true" class="menu-button-style" style="margin-top: 40px;" />
         <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitTheGameButton" class="menu-button-style" style="margin-top: 40px;" />
     </ui:VisualElement>
 </ui:UXML>

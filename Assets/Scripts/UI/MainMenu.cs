@@ -9,11 +9,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private VisualElement _mainMenuUI;
     [SerializeField] private SettingsMenu _settingsMenu;
     [SerializeField] private LoadLevelsMenu _loadLevelsMenu;
+    [SerializeField] private LeaderboardManager _leaderboardMenu;
     public static MainMenu Instance { get; private set; }
 
     private void OnEnable()
     {
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("StartButton").clicked += OpenLoadLevelsMenu;
+        UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("OpenLeaderboardMenuButton").clicked += OpenLeaderboardMenu;
         if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
             UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("ExitTheGameButton").clicked += ExitTheGame;
@@ -54,6 +56,10 @@ public class MainMenu : MonoBehaviour
         _mainMenuUI.style.display = DisplayStyle.None;
     }
 
+    private void OpenLeaderboardMenu()
+    {
+        _leaderboardMenu.OpenLeaderboard();
+    }
     private void ExitTheGame()
     {
 #if UNITY_EDITOR
