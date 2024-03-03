@@ -23,10 +23,6 @@ public class GameMenu : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void OnEnable()
-    {
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("QuitButton").clicked += Quit;
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("SaveGameButton").clicked += SaveGame;
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("LoadGameButton").clicked += LoadGame;

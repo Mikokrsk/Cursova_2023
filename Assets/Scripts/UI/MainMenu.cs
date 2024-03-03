@@ -10,10 +10,19 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private SettingsMenu _settingsMenu;
     [SerializeField] private LoadLevelsMenu _loadLevelsMenu;
     [SerializeField] private LeaderboardManager _leaderboardMenu;
-    public static MainMenu Instance { get; private set; }
+    public static MainMenu Instance;
 
-    private void OnEnable()
+    void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("StartButton").clicked += OpenLoadLevelsMenu;
         UIHandler.Instance._uiDocument.rootVisualElement.Q<Button>("OpenLeaderboardMenuButton").clicked += OpenLeaderboardMenu;
         if (Application.platform != RuntimePlatform.WebGLPlayer)
@@ -26,17 +35,15 @@ public class MainMenu : MonoBehaviour
         }
         _mainMenuUI = UIHandler.Instance._uiDocument.rootVisualElement.Q<VisualElement>("MainMenuUI");
         _mainMenuUI.style.display = DisplayStyle.None;
+    }
+    private void OnEnable()
+    {
         OpenMainMenu();
     }
 
     private void OnDisable()
     {
         CloseMainMenuUI();
-    }
-
-    private void Awake()
-    {
-        Instance = this;
     }
 
     public void OpenMainMenu()
