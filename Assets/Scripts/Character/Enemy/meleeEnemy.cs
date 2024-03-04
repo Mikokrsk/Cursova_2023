@@ -24,7 +24,7 @@ public class meleeEnemy : MonoBehaviour
     private void Attack()
     {
         _enemyStats.isAttaking = true;
-        _attackSensor.EnableAttackCollider(0);
+        //  _attackSensor.EnableAttackCollider(0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,7 +33,7 @@ public class meleeEnemy : MonoBehaviour
             /*            var player = collision.gameObject.GetComponent<Player>();
                         player.GetHit(_enemy.GetEnemyStats().damage);*/
 
-            _enemyStats?.attack.Invoke();
+            //   _enemyStats?.attack.Invoke();
         }
     }
 

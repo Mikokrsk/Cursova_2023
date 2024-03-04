@@ -2,71 +2,60 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CombatController : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Attack_Sensor _attackSensor;
-    public bool isAttacking = false;
+
+    [SerializeField] private InputAction _attack1Action;
+    [SerializeField] private Attack_Sensor _attack1Sensor;
+    [SerializeField] private InputAction _attack2Action;
+    [SerializeField] private Attack_Sensor _attack2Sensor;
+    [SerializeField] private InputAction _attack3Action;
+    [SerializeField] private Attack_Sensor _attack3Sensor;
+
     private void OnEnable()
     {
-        _player = GetComponent<Player>();
-        _attackSensor = GetComponentInChildren<Attack_Sensor>();
+        _attack1Action.Enable();
+        _attack2Action.Enable();
+        _attack3Action.Enable();
+        _attack1Action.performed += Attack1;
+        _attack2Action.performed += Attack2;
+        _attack3Action.performed += Attack3;
     }
-    void Start()
+    private void OnDisable()
     {
-        if (_player != null)
-        {
-            _player.attack1 += Attack1;
-            _player.attack2 += Attack2;
-            _player.attack3 += Attack3;
-        }
+        _attack1Action.Disable();
+        _attack2Action.Disable();
+        _attack3Action.Disable();
+        _attack1Action.performed -= Attack1;
+        _attack2Action.performed -= Attack2;
+        _attack3Action.performed -= Attack3;
     }
 
-    void Update()
+    public void Attack1(InputAction.CallbackContext context)
     {
-        //Attack
-        if (isAttacking)
+        if (_attack1Sensor.enabled == false && _player.isAttacking == false)
         {
-            return;
-        }
-        if (Input.GetKeyDown(_player.attack1KeyCode))
-        {
-            _player.attack1.Invoke();
-        }
-        if (Input.GetKeyDown(_player.attack2KeyCode))
-        {
-            _player.attack2.Invoke();
-        }
-        if (Input.GetKeyDown(_player.attack3KeyCode))
-        {
-            _player.attack3.Invoke();
+            _player._animController.Attack1();
+            _attack1Sensor.enabled = true;
         }
     }
-    public void Attack1()
+    public void Attack2(InputAction.CallbackContext context)
     {
-        _attackSensor.SetDamage(_player.damageAttack1);
-        _attackSensor.EnableAttack1Collider();
-        StartCoroutine(Attack(_player.attack1Delay));
+        if (_attack2Sensor.enabled == false && _player.isAttacking == false)
+        {
+            _player._animController.Attack2();
+            _attack2Sensor.enabled = true;
+        }
     }
-    public void Attack2()
+    public void Attack3(InputAction.CallbackContext context)
     {
-        _attackSensor.SetDamage(_player.damageAttack2);
-        _attackSensor.EnableAttack2Collider();
-        StartCoroutine(Attack(_player.attack2Delay));
+        if (_attack3Sensor.enabled == false && _player.isAttacking == false)
+        {
+            _player._animController.Attack3();
+            _attack3Sensor.enabled = true;
+        }
     }
-    public void Attack3()
-    {
-        _attackSensor.SetDamage(_player.damageAttack3);
-        _attackSensor.EnableAttack3Collider();
-        StartCoroutine(Attack(_player.attack3Delay));
-    }
-    private IEnumerator Attack(float attackDelay)
-    {
-        _player.isAttack = true;
-        yield return new WaitForSeconds(attackDelay);
-        _player.isAttack = false;
-        _attackSensor.OffAllColiders();
-    }
-
 }

@@ -38,7 +38,7 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
-        if (_player.combatController.isAttacking)
+        if (_player.isAttacking)
         {
             _isMoving = false;
             _player._animController.EndMove();

@@ -5,44 +5,30 @@ using UnityEngine;
 
 public class Attack_Sensor : MonoBehaviour
 {
-    [SerializeField] private EdgeCollider2D _attack1Colider;
-    [SerializeField] private EdgeCollider2D _attack2Colider;
-    [SerializeField] private EdgeCollider2D _attack3Colider;
-    [SerializeField] protected List<Collider2D> _attackColliders;
-    [SerializeField] protected List<int> _attackDamages;
-    [SerializeField] protected int _damage = 0;
+    [SerializeField] private Player _player;
+    [SerializeField] protected Collider2D _collider;
+    [SerializeField] protected int _damage;
 
-    public virtual void OffAllColiders()
+    private void OnEnable()
     {
-        _attack1Colider.enabled = false;
-        _attack2Colider.enabled = false;
-        _attack3Colider.enabled = false;
+        OnAttackCollider();
     }
-    public virtual void EnableAttackCollider(int colliderID)
+
+    private void OnDisable()
     {
-        _attackColliders[colliderID].enabled = true;
+        OffAttackCollider();
+        _player.isAttacking = false;
     }
-    public virtual void EnableAttack1Collider()
+
+    public void OffAttackCollider()
     {
-        _attack1Colider.enabled = true;
-        _attack2Colider.enabled = false;
-        _attack3Colider.enabled = false;
+        _collider.enabled = false;
     }
-    public virtual void EnableAttack2Collider()
+
+    public void OnAttackCollider()
     {
-        _attack1Colider.enabled = false;
-        _attack2Colider.enabled = true;
-        _attack3Colider.enabled = false;
-    }
-    public virtual void EnableAttack3Collider()
-    {
-        _attack1Colider.enabled = false;
-        _attack2Colider.enabled = false;
-        _attack3Colider.enabled = true;
-    }
-    public virtual void SetDamage(int damage)
-    {
-        _damage = damage;
+        _player.isAttacking = true;
+        _collider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +37,8 @@ public class Attack_Sensor : MonoBehaviour
         if (enemy != null)
         {
             enemy.GetHit(_damage);
+
         }
-        OffAllColiders();
+        OffAttackCollider();
     }
 }

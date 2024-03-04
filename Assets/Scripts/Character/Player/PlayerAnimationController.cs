@@ -41,9 +41,9 @@ public class PlayerAnimationController : MonoBehaviour
             _player.startMove += StartMove;
             _player.endMove += EndMove;
             _player.jump += Jump;
-            _player.attack1 += Attack1;
+/*            _player.attack1 += Attack1;
             _player.attack2 += Attack2;
-            _player.attack3 += Attack3;
+            _player.attack3 += Attack3;*/
         }
     }
 
