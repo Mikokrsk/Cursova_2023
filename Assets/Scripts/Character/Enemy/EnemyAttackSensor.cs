@@ -2,40 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackSensor : Attack_Sensor
+public class EnemyAttackSensor : MonoBehaviour
 {
-    /*    [SerializeField] private Enemy _enemy;
-        [SerializeField] private EnemyStats _enemyStats;
+    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private int _damage;
 
-        private void Start()
-        {
-            _enemyStats = _enemy.GetEnemyStats();
-        }
-        public override void OffAllColiders()
-        {
-            foreach (var collider in _attackColliders)
-            {
-                collider.enabled = false;
-            }
-        }
-        public override void EnableAttackCollider(int id)
-        {
-            _attackColliders[id].enabled = true;
-            SetDamage(_attackDamages[id]);
-        }
+    private void OnEnable()
+    {
+        OnAttackCollider();
+    }
 
-        public override void SetDamage(int damage)
-        {
-            _damage = damage;
-        }
+    private void OnDisable()
+    {
+        OffAttackCollider();
+        _enemy.isAttacking = false;
+    }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    public void OffAttackCollider()
+    {
+        _collider.enabled = false;
+    }
+
+    public void OnAttackCollider()
+    {
+        _collider.enabled = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var player = collision.GetComponent<Player>();
+        if (player != null)
         {
-            var player = collision.GetComponentInChildren<HealthSystem>();
-            if (player != null)
-            {
-                player.GetHit(_damage);
-            }
-            OffAllColiders();
-        }*/
+            player.healthSystem.GetHit(_damage);
+        }
+        OffAttackCollider();
+    }
 }

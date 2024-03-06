@@ -5,25 +5,20 @@ using UnityEngine;
 public class EnemyAnimationController : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private EnemyStats _enemyStats;
+    [Header("Animations")]
+    [SerializeField] public Animator animator;
+    public string animAttackName = "Attack";
     // Start is called before the first frame update
     void Start()
     {
-        if(_enemy == null)
+        if (_enemy == null)
         {
             _enemy = GetComponent<Enemy>();
         }
-        _enemyStats = _enemy.GetEnemyStats();
-        _enemyStats.attack += Attack;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Attack()
     {
-        _enemyStats.animator.SetTrigger(_enemyStats.animAttackName);
+        animator.SetTrigger(animAttackName);
     }
 }

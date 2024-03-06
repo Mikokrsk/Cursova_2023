@@ -5,35 +5,41 @@ using UnityEngine;
 public class meleeEnemy : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private EnemyStats _enemyStats;
-    [SerializeField] private CapsuleCollider2D _collider;
-    [SerializeField] private EnemyAttackSensor _attackSensor;
+    [SerializeField] private EnemyAttackSensor _enemyAttackSensor1;
+    [SerializeField] private Collider2D _enemyCollider;
+    [SerializeField] private Vector2 _sizeBox;
+    [SerializeField] private float _horizontalRange;
+    [SerializeField] private float _verticalRange;
+    [SerializeField] private float _afterDelay;
+    [SerializeField] private float _maxDelay;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool isPlayerInAttackingZone()
     {
-        _enemyStats = _enemy.GetEnemyStats();
-        _enemyStats.attack += Attack;
+        RaycastHit2D hit = Physics2D.BoxCast(_enemyCollider.bounds.center
+            + transform.right * _horizontalRange + transform.up * _verticalRange, _sizeBox, 0, Vector2.right, 0);
+        return hit.collider.tag == "Player";
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_enemyCollider.bounds.center
+            + transform.right * _horizontalRange + transform.up * _verticalRange, _sizeBox);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-    }
-    private void Attack()
-    {
-        _enemyStats.isAttaking = true;
-        //  _attackSensor.EnableAttackCollider(0);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
+        if (_enemy.isAttacking == true)
         {
-            /*            var player = collision.gameObject.GetComponent<Player>();
-                        player.GetHit(_enemy.GetEnemyStats().damage);*/
-
-            //   _enemyStats?.attack.Invoke();
+            return;
+        }
+        if (isPlayerInAttackingZone() && _afterDelay <= 0)
+        {
+            _enemy.animationController.Attack();
+            _afterDelay = _maxDelay;
+        }
+        if (_afterDelay >= 0)
+        {
+            _afterDelay -= Time.deltaTime;
         }
     }
 

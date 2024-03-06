@@ -6,8 +6,8 @@ using UnityEngine;
 public class Attack_Sensor : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] protected Collider2D _collider;
-    [SerializeField] protected int _damage;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private int _damage;
 
     private void OnEnable()
     {
