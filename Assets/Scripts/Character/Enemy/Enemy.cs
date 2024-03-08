@@ -1,47 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected EnemyStats _enemyStats;
-    [SerializeField] protected EnemyMoveController _enemyMoveController;
-    [Header("Stats")]
-    [SerializeField] public bool isAttacking;
-    [SerializeField] public EnemyAnimationController animationController;
+    [Header("Controllers")]
+    public EnemyMoveController enemyMoveController;
+    public EnemyAnimationController animationController;
 
+    [Header("Move")]
+    public float speed = 18f;
+    public ConstantForce2D constantForce2D;
+    public int direction;
+    [Header("Stans")]
+    public bool isMove;
+    public bool isPatrolling;
+    public bool isAttacking;
+    [Header("Events")]
+    public Action jump;
+    public Action startMove;
+    public Action endMove;
+    public Action attack;
 
-    public EnemyStats GetEnemyStats()
-    {
-        return _enemyStats;
-    }
-    public void SetEnemyStats(EnemyStats enemyStats)
-    {
-        _enemyStats = enemyStats;
-    }
-    public EnemyMoveController GetEnemyMoveController()
-    {
-        return _enemyMoveController;
-    }
-    public void SetEnemyMoveController(EnemyMoveController enemyMoveController)
-    {
-        _enemyMoveController = enemyMoveController;
-    }
-    /*    private  void Start()
-        {
-            _enemyStats = GetComponent<EnemyStats>();
-        }
-        private void Update()
-        {
-            if(_enemyStats.Health<=0)
-            {
-                Death();
-            }
-        }*/
+    [Header("HealthSystem")]
+    [SerializeField] protected int _health = 100;
+
     public virtual void GetHit(int damage)
     {
-        _enemyStats.Health -= damage;
-        Debug.Log($"Enemy Get Hit :{_enemyStats.Health}  Damage :{damage}");
+        _health -= damage;
+        Debug.Log($"Enemy Get Hit :{_health}  Damage :{damage}");
     }
     public virtual void Death()
     {
