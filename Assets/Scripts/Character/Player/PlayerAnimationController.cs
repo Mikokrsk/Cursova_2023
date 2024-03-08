@@ -52,7 +52,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         rbVelosityMagnitydeY = rb.velocity.y;
         animator.SetFloat(animAirSpeedYName, rbVelosityMagnitydeY);
-        animator.SetBool(animGroundedName, playerGroundSensor.Grounded());
+        animator.SetBool(animGroundedName, playerGroundSensor.IsGrounded());
     }
     public void StartMove()
     {

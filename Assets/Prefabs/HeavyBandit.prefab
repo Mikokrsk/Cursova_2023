@@ -279,13 +279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10622735526db554489bd16f5af3e4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  speed: 8
-  constantForce2D: {fileID: 5019666259555981831}
-  direction: 0
-  isMove: 0
-  isPatrolling: 0
-  damage: 0a000000
 --- !u!114 &2111022932513225941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,10 +291,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82400e3ce45a42347b68749caa7d489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStats: {fileID: 4802043736744678151}
-  _enemyMoveController: {fileID: 8918252796980316656}
-  isAttacking: 0
+  enemyMoveController: {fileID: 0}
   animationController: {fileID: 5806269275613832420}
+  rb: {fileID: 0}
+  isMoving: 0
+  isPatrolling: 0
+  isAttacking: 0
+  isJumping: 0
+  _health: 100
 --- !u!247 &5019666259555981831
 ConstantForce2D:
   m_ObjectHideFlags: 0
@@ -534,14 +531,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 622472234856240354, guid: e3ff05b9ffcb64c4eb11e400e48254a8, type: 3}
   m_PrefabInstance: {fileID: 8652858835044808614}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8918252796980316656 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 276653545197370966, guid: e3ff05b9ffcb64c4eb11e400e48254a8, type: 3}
-  m_PrefabInstance: {fileID: 8652858835044808614}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13884fc4bd0e0d94981892259f9687d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

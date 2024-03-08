@@ -57,7 +57,7 @@ public class PlayerMoveController : MonoBehaviour
             _isMoving = false;
             _player._animController.EndMove();
         }
-        if (playerGroundSensor.Grounded())
+        if (playerGroundSensor.IsGrounded())
         {
             isJumping = false;
         }

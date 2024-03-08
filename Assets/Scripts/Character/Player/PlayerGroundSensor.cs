@@ -9,7 +9,7 @@ public class PlayerGroundSensor : MonoBehaviour
     [SerializeField] private Vector2 _sizeBox;
     [SerializeField] private float _range;
 
-    public bool Grounded()
+    public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(_boxCollider.bounds.center
             + transform.up * _range, _sizeBox, 0, Vector2.down, 0);
