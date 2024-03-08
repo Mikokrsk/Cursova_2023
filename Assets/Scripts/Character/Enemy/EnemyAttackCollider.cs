@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackSensor : MonoBehaviour
+public class EnemyAttackCollider : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Collider2D _collider;
