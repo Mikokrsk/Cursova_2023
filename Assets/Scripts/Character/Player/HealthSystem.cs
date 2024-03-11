@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private int _health = 100;
-    [SerializeField] private int _maxHealth = 100;
-    public int Health
+    [SerializeField] protected int _health = 100;
+    [SerializeField] protected int _maxHealth = 100;
+    public virtual int Health
     {
         get
         {
@@ -19,7 +19,7 @@ public class HealthSystem : MonoBehaviour
             _health = value;
         }
     }
-    public int MaxHealth
+    public virtual int MaxHealth
     {
         get
         {
@@ -30,16 +30,16 @@ public class HealthSystem : MonoBehaviour
             _maxHealth = value;
         }
     }
-    public void UpdateHpBar()
+    protected virtual void UpdateHpBar()
     {
         GameUI.Instance.SetHealthValue(_health / (float)_maxHealth);
     }
-    public void GetHit(int damage)
+    public virtual void GetHit(int damage)
     {
         _health = Mathf.Clamp(_health - damage, 0, _maxHealth);
         UpdateHpBar();
     }
-    public void Heal(int heal) 
+    public virtual void Heal(int heal)
     {
         _health = Mathf.Clamp(_health + heal, 0, _maxHealth);
         UpdateHpBar();

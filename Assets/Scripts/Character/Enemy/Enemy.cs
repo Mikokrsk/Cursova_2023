@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public EnemyMoveController enemyMoveController;
     public EnemyAnimationController animationController;
     public PlayerGroundSensor groundSensor;
+    public EnemyHealthController healthController;
     [Header("Move")]
     public Rigidbody2D rb;
     // public float speed = 18f;
@@ -19,22 +20,9 @@ public class Enemy : MonoBehaviour
     public bool isAttacking;
     public bool isJumping;
     public bool isGrounded;
-    /*    [Header("Events")]
-        public Action jump;
-        public Action startMove;
-        public Action endMove;
-        public Action attack;*/
-
-    [Header("HealthSystem")]
-    [SerializeField] protected int _health = 100;
 
     public virtual void GetHit(int damage)
     {
-        _health -= damage;
-        Debug.Log($"Enemy Get Hit :{_health}  Damage :{damage}");
-    }
-    public virtual void Death()
-    {
-        Destroy(gameObject);
+        healthController.GetHit(damage);
     }
 }
