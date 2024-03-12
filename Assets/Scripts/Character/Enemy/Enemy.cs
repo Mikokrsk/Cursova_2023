@@ -20,7 +20,20 @@ public class Enemy : MonoBehaviour
     public bool isAttacking;
     public bool isJumping;
     public bool isGrounded;
+    public bool isAgresive;
 
+    private void Update()
+    {
+        if (isAttacking || isAgresive)
+        {
+            isPatrolling = false;
+            return;
+        }
+        else
+        {
+            isPatrolling = true;
+        }
+    }
     public virtual void GetHit(int damage)
     {
         healthController.GetHit(damage);

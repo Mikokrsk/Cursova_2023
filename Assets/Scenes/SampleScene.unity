@@ -6903,6 +6903,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5543990757959472715}
+  - {fileID: 1846493910}
   - {fileID: 1512539871}
   m_Father: {fileID: 1805456136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14792,13 +14793,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846493909}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1846683053}
-  m_Father: {fileID: 5543990757959472715}
+  m_Father: {fileID: 775373828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1846493911
 MonoBehaviour:
@@ -14816,6 +14817,7 @@ MonoBehaviour:
   _maxHealth: 10
   _healthBarSlider: {fileID: 2120507019}
   _enemy: {fileID: 775373827}
+  _enemyTransform: {fileID: 5543990757959472715}
 --- !u!1 &1846683052
 GameObject:
   m_ObjectHideFlags: 0
@@ -15615,6 +15617,7 @@ MonoBehaviour:
   isAttacking: 0
   isJumping: 0
   isGrounded: 0
+  isAgresive: 0
 --- !u!50 &4341662942561590714
 Rigidbody2D:
   serializedVersion: 4
@@ -15719,6 +15722,10 @@ PrefabInstance:
       propertyPath: _enemyCollider
       value: 
       objectReference: {fileID: 600401860926222976}
+    - target: {fileID: 709797550653182750, guid: c4c732da8ae437f49adb29d3b1edeff2, type: 3}
+      propertyPath: afterAttackDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1556165918415878944, guid: c4c732da8ae437f49adb29d3b1edeff2, type: 3}
       propertyPath: _enemy
       value: 
@@ -15817,7 +15824,6 @@ Transform:
   - {fileID: 715153179}
   - {fileID: 137561149}
   - {fileID: 166323321}
-  - {fileID: 1846493910}
   m_Father: {fileID: 775373828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5766289366420962058

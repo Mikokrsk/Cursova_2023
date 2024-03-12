@@ -10,6 +10,7 @@ public class EnemyAnimationController : MonoBehaviour
     public string animAttackName = "Attack";
     public string animIsRuningName = "IsRuning";
     public string animIsGroundedName = "IsGrounded";
+    public string animIsAgresiveName = "IsAgresive";
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +30,6 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetBool(animIsRuningName, _enemy.isRuning);
         _enemy.isGrounded = _enemy.groundSensor.IsGrounded();
         animator.SetBool(animIsGroundedName, _enemy.isGrounded);
+        animator.SetBool(animIsAgresiveName, _enemy.isAgresive);
     }
 }

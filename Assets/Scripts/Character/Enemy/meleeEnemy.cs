@@ -15,11 +15,20 @@ public class MeleeEnemy : MonoBehaviour
             return;
         }
 
-        if (_enemyAttackingZone.isPlayerInAttackingZone() && _afterAttackDelay <= 0)
+        if (_enemyAttackingZone.isPlayerInAttackingZone())
         {
-            _enemy.animationController.Attack();
-            _afterAttackDelay = _enemyAttackingZone.afterAttackDelay;
+            if (_afterAttackDelay <= 0)
+            {
+                _enemy.animationController.Attack();
+                _afterAttackDelay = _enemyAttackingZone.afterAttackDelay;
+            }
+            _enemy.isAgresive = true;
         }
+        else
+        {
+            _enemy.isAgresive = false;
+        }
+
         if (_afterAttackDelay > 0)
         {
             _afterAttackDelay -= Time.deltaTime;
